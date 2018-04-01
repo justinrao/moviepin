@@ -5,7 +5,6 @@ import {Box, Icon, SearchField, IconButton} from "gestalt";
 class HeaderBar extends Component {
     constructor(props) {
       super(props);
-      this.state = { value: '' };
     }
 
     render() {
@@ -23,9 +22,9 @@ class HeaderBar extends Component {
             <SearchField
               accessibilityLabel="Search Field"
               id="searchField"
-              onChange={({ value }) => this.setState({ value })}
+              onChange={({ value }) => this.props.onSearchChanged( value )}
               placeholder="Search and explore movies"
-              value={this.state.value}
+              value={this.props.search}
             />
           </Box>
           <Box paddingX={2}>
