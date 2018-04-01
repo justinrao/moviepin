@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Masonry} from 'gestalt';
+import MoviePoster from './MoviePoster';
 
 
 class MovieFlow extends Component {
@@ -11,7 +12,7 @@ class MovieFlow extends Component {
     }
 
     componentDidMount() {
-        const url = 'https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=hero';
+        const url = 'https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=love';
         axios.get(url)
             .then(response => {
                 console.log(response.data);
@@ -22,9 +23,11 @@ class MovieFlow extends Component {
     render() {
         return (
             <Masonry
-                comp={i => (<span>{i.data.title}</span>)}
+                comp={i => (<MoviePoster posterPath={i.data.poster_path} title={i.data.title}/>)}
                 items={this.state.movies}
                 minCols={1}
+                flexible={true}
+                gutterWidth={3}
             />
         );
     }
