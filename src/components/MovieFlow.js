@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Masonry} from 'gestalt';
+import {Masonry, MasonryUniformRowLayout} from 'gestalt';
 import MoviePoster from './MoviePoster';
 
 
@@ -9,21 +9,29 @@ class MovieFlow extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {movies: []}
+    this.state = {movies: [], page: 0};
     this.loadMovies(props.search);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.loadMovies(nextProps.search)
+    console.log("componentWillReceiveProps:", nextProps);
+    this.setState(
+      {movies: [], page: 0},
+      () => this.loadMovies(nextProps.search)
+    );
+
   }
 
 // to be move into service / side-effect
   loadMovies = (query) => {
-    const url = 'https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=' + encodeURI(query);
+
+    let page = this.state.page + 1;
+
+    const url = 'https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=' + encodeURI(query) + '&page=' + page;
     axios.get(url)
       .then(response => {
-        console.log(response.data);
-        this.setState({movies: response.data.results})
+        let results = response.data.results.filter(i => !!i.poster_path);
+        this.setState((prevState) => ({movies:[...prevState.movies, ...results], page}))
       });
   };
 
@@ -32,8 +40,10 @@ class MovieFlow extends Component {
       <Masonry
         comp={i => (<MoviePoster posterPath={i.data.poster_path} title={i.data.title}/>)}
         items={this.state.movies}
-        minCols={1}
+        minCols={3}
+        loadItems={() => this.loadMovies(this.props.search)}
         flexible={true}
+        scrollContainer={() => window}
         gutterWidth={3}
       />
     );
