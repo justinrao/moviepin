@@ -24,6 +24,9 @@ class MoviesApi {
     return request('search/movie', params);
   }
 
+  static get(movieId) {
+    return request('movie/' + movieId)
+  }
 }
 
 export default MoviesApi

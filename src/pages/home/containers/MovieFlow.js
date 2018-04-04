@@ -13,13 +13,13 @@ class MovieFlow extends Component {
     this.loadMovies(props.search);
   }
 
+
+
   componentWillReceiveProps(nextProps) {
-    console.log("componentWillReceiveProps:", nextProps);
     this.setState(
       {movies: [], page: 0},
       () => this.loadMovies(nextProps.search)
     );
-
   }
 
 // to be move into service / side-effect

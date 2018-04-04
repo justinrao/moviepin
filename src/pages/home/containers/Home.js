@@ -3,7 +3,7 @@ import {Container} from 'gestalt';
 import HeaderBar from '../components/HeaderBar';
 import MovieFlow from './MovieFlow';
 
-class HomePage extends Component {
+class Home extends Component {
 
   constructor() {
     super();
@@ -21,4 +21,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default Home;
