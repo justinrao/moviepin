@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {Masonry} from 'gestalt';
 import MoviePoster from '../components/MoviePoster';
+import MoviesApi from '../../../services/moviesApi';
 
 const POSTER_URL_PREFIX = 'http://image.tmdb.org/t/p/w500/';
 
@@ -27,11 +27,14 @@ class MovieFlow extends Component {
 
     let page = this.state.page + 1;
 
-    const url = 'https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=' + encodeURI(query) + '&page=' + page;
-    axios.get(url)
+    MoviesApi
+      .search({
+        query: query,
+        page: page
+      })
       .then(response => {
-        let results = response.data.results.filter(i => !!i.poster_path);
-        this.setState((prevState) => ({movies:[...prevState.movies, ...results], page}))
+        let results = response.results.filter(i => !!i.poster_path);
+        this.setState((prevState) => ({movies: [...prevState.movies, ...results], page}))
       });
   };
 
