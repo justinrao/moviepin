@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Container} from 'gestalt';
-import HeaderBar from "./components/HeaderBar";
-import MovieFlow from "./components/MovieFlow";
+import Home from './pages/home/containers/Home';
+import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {
 
@@ -13,11 +12,9 @@ class App extends Component {
 
   render() {
     return (
-      <Container>
-          <HeaderBar search={this.state.search}
-                        onSearchChanged={search => this.setState({search})}/>
-          <MovieFlow search={this.state.search}/>
-      </Container>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+      </Switch>
     );
   }
 }

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Masonry, MasonryUniformRowLayout} from 'gestalt';
-import MoviePoster from './MoviePoster';
+import {Masonry} from 'gestalt';
+import MoviePoster from '../components/MoviePoster';
 
-
+const POSTER_URL_PREFIX = 'http://image.tmdb.org/t/p/w500/';
 
 class MovieFlow extends Component {
 
@@ -38,7 +38,7 @@ class MovieFlow extends Component {
   render() {
     return (
       <Masonry
-        comp={i => (<MoviePoster posterPath={i.data.poster_path} title={i.data.title}/>)}
+        comp={i => (<MoviePoster posterUrl={POSTER_URL_PREFIX + i.data.poster_path} title={i.data.title}/>)}
         items={this.state.movies}
         minCols={3}
         loadItems={() => this.loadMovies(this.props.search)}
