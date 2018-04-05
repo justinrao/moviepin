@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Masonry} from 'gestalt';
 import MoviePoster from '../components/MoviePoster';
 import MoviesApi from '../../../services/moviesApi';
+import {withRouter} from 'react-router-dom';
 
 const POSTER_URL_PREFIX = 'http://image.tmdb.org/t/p/w500/';
 
@@ -12,8 +13,6 @@ class MovieFlow extends Component {
     this.state = {movies: [], page: 0};
     this.loadMovies(props.search);
   }
-
-
 
   componentWillReceiveProps(nextProps) {
     this.setState(
@@ -38,10 +37,17 @@ class MovieFlow extends Component {
       });
   };
 
+  handleOnPosterClicked = (movieId) => {
+    console.log("movieId:" +  movieId);
+    this.props.history.push(`/movie/${movieId}`);
+  } ;
+
   render() {
     return (
       <Masonry
-        comp={i => (<MoviePoster posterUrl={POSTER_URL_PREFIX + i.data.poster_path} title={i.data.title}/>)}
+        comp={i => (<MoviePoster posterUrl={POSTER_URL_PREFIX + i.data.poster_path}
+                                 title={i.data.title}
+                                 onClick={() => this.handleOnPosterClicked(i.data.id)}/>)}
         items={this.state.movies}
         minCols={3}
         loadItems={() => this.loadMovies(this.props.search)}
@@ -53,4 +59,4 @@ class MovieFlow extends Component {
   }
 }
 
-export default MovieFlow;
+export default withRouter(MovieFlow);

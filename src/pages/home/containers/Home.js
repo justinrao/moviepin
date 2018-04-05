@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Container} from 'gestalt';
 import HeaderBar from '../components/HeaderBar';
 import MovieFlow from './MovieFlow';
+import '../Home.css';
 
 class Home extends Component {
 
