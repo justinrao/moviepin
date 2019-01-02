@@ -1,8 +1,12 @@
 import React from 'react';
 import {Box, SearchField, IconButton, Icon} from "gestalt";
 
+interface Props {
+  search: string
+  onSearchChanged: (e: string) => void
+}
 
-const HeaderBar = ({search, onSearchChanged}) =>  (
+const HeaderBar = ({search, onSearchChanged}: Props) =>  (
     <Box color="white" shape="rounded" padding={3} display="flex" direction="row" alignItems="center">
       <Box padding={3}>
         <Icon

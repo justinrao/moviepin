@@ -1,8 +1,14 @@
 import React from 'react';
-import {Box} from "gestalt";
+import {Box} from 'gestalt';
 
 
-const MoviePoster = ({title, posterUrl, onClick}) => (
+interface Props {
+  title: string,
+  posterUrl: string,
+  onClick: (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => void
+}
+
+const MoviePoster = ({title, posterUrl, onClick}: Props) => (
   <div className="poster">
     <Box>
       <img alt={title}

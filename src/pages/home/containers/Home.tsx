@@ -4,10 +4,14 @@ import HeaderBar from '../components/HeaderBar';
 import MovieFlow from './MovieFlow';
 import '../Home.css';
 
-class Home extends Component {
+interface State {
+  search: string
+}
 
-  constructor() {
-    super();
+class Home extends Component<{}, State> {
+
+  constructor(props: {}) {
+    super(props);
     this.state = {search: 'Hero'};
   }
 
@@ -15,7 +19,7 @@ class Home extends Component {
     return (
       <Container>
         <HeaderBar search={this.state.search}
-                   onSearchChanged={search => this.setState({search})}/>
+                   onSearchChanged={(search: string) => this.setState({search})}/>
         <MovieFlow search={this.state.search}/>
       </Container>
     );

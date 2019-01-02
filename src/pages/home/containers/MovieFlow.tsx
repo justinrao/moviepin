@@ -1,20 +1,29 @@
 import React, {Component} from 'react';
-import {Masonry} from 'gestalt';
 import MoviePoster from '../components/MoviePoster';
 import MoviesApi from '../../../services/moviesApi';
-import {withRouter} from 'react-router-dom';
+import {Masonry} from "gestalt";
+import {RouteComponentProps, withRouter} from "react-router";
 
 const POSTER_URL_PREFIX = 'http://image.tmdb.org/t/p/w500/';
 
-class MovieFlow extends Component {
+interface Props extends RouteComponentProps {
+  search: string
+}
 
-  constructor(props) {
+interface State {
+  movies: Array<any>,
+  page: number
+}
+
+class MovieFlow extends Component<Props, State> {
+
+  constructor(props: Props) {
     super(props);
     this.state = {movies: [], page: 0};
     this.loadMovies(props.search);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     this.setState(
       {movies: [], page: 0},
       () => this.loadMovies(nextProps.search)
@@ -22,7 +31,7 @@ class MovieFlow extends Component {
   }
 
 // to be move into service / side-effect
-  loadMovies = (query) => {
+  loadMovies = (query: string) => {
 
     let page = this.state.page + 1;
 
@@ -31,28 +40,29 @@ class MovieFlow extends Component {
         query: query,
         page: page
       })
-      .then(response => {
-        let results = response.results.filter(i => !!i.poster_path);
+      .then((response: any) => {
+        let results = response.results.filter((i: any) => !!i.poster_path);
         this.setState((prevState) => ({movies: [...prevState.movies, ...results], page}))
       });
   };
 
-  handleOnPosterClicked = (movieId) => {
-    console.log("movieId:" +  movieId);
+  handleOnPosterClicked = (movieId: string) => {
+    console.log("movieId:" + movieId);
+    let a: Window = window;
     this.props.history.push(`/movie/${movieId}`);
-  } ;
+  };
 
   render() {
     return (
       <Masonry
-        comp={i => (<MoviePoster posterUrl={POSTER_URL_PREFIX + i.data.poster_path}
+        comp={(i: any) => (<MoviePoster posterUrl={POSTER_URL_PREFIX + i.data.poster_path}
                                  title={i.data.title}
                                  onClick={() => this.handleOnPosterClicked(i.data.id)}/>)}
         items={this.state.movies}
         minCols={3}
         loadItems={() => this.loadMovies(this.props.search)}
         flexible={true}
-        scrollContainer={() => window}
+        scrollContainer={() => document.body}
         gutterWidth={3}
       />
     );

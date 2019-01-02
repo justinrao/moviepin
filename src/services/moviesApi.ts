@@ -8,9 +8,9 @@ const instance = axios.create({
   baseURL: "https://api.themoviedb.org/3/"
 });
 
-const unwrapData = ({data}) => data;
+const unwrapData = ({data}: {data: any}) => data;
 
-const request = (name, params = {}) =>
+const request = (name: string, params = {}) =>
   instance
     .get(`/${name}`, {
       params: {...commonParams, ...params}
@@ -18,13 +18,18 @@ const request = (name, params = {}) =>
     .then(unwrapData);
 
 
+export interface SearchParams {
+  query: string,
+  page: number
+}
+
 class MoviesApi {
 
-  static search(params) {
+  static search(params: SearchParams) {
     return request('search/movie', params);
   }
 
-  static get(movieId) {
+  static get(movieId: string) {
     return request('movie/' + movieId)
   }
 }
