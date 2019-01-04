@@ -8,9 +8,7 @@ interface RouteParams {
 }
 
 interface Props extends RouteComponentProps<RouteParams>{
-
 }
-
 
 interface State {
   movie?: any

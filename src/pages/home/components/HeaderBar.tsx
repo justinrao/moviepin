@@ -2,13 +2,13 @@ import React from 'react';
 import {Box, SearchField, IconButton, Icon} from "gestalt";
 
 interface Props {
-  search: string
+  search?: string
   onSearchChanged: (e: string) => void
 }
 
-const HeaderBar = ({search, onSearchChanged}: Props) =>  (
+const HeaderBar = ({search = '', onSearchChanged}: Props) =>  (
     <Box color="white" shape="rounded" padding={3} display="flex" direction="row" alignItems="center">
-      <Box padding={3}>
+      <Box padding={3}> 
         <Icon
           color="red"
           icon="globe"

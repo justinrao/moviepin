@@ -15,11 +15,15 @@ class Home extends Component<{}, State> {
     this.state = {search: 'Hero'};
   }
 
+  handleSearchChanged = (search: string) => {
+    this.setState({search});
+  };
+
   render() {
     return (
       <Container>
         <HeaderBar search={this.state.search}
-                   onSearchChanged={(search: string) => this.setState({search})}/>
+                   onSearchChanged={this.handleSearchChanged}/>
         <MovieFlow search={this.state.search}/>
       </Container>
     );

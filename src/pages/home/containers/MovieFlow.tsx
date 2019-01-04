@@ -47,8 +47,6 @@ class MovieFlow extends Component<Props, State> {
   };
 
   handleOnPosterClicked = (movieId: string) => {
-    console.log("movieId:" + movieId);
-    let a: Window = window;
     this.props.history.push(`/movie/${movieId}`);
   };
 
@@ -62,7 +60,6 @@ class MovieFlow extends Component<Props, State> {
         minCols={3}
         loadItems={() => this.loadMovies(this.props.search)}
         flexible={true}
-        scrollContainer={() => document.body}
         gutterWidth={3}
       />
     );
