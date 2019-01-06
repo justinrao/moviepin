@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Container} from 'gestalt';
-import HeaderBar from '../components/HeaderBar';
+import {Container, Box} from 'gestalt';
+import HeaderBar from '../../../shared/components/HeaderBar/HeaderBar';
 import MovieFlow from './MovieFlow';
 import '../HomePage.css';
 
@@ -21,11 +21,13 @@ class HomePage extends Component<{}, State> {
 
   render() {
     return (
+      <Box color="lightGray" padding={3} >
       <Container>
-        <HeaderBar search={this.state.search}
-                   onSearchChanged={this.handleSearchChanged}/>
+      <HeaderBar search={this.state.search}
+                 onSearchChanged={this.handleSearchChanged}/>
         <MovieFlow search={this.state.search}/>
-      </Container>
+        </Container>
+     </Box>
     );
   }
 }

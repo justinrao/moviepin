@@ -3,11 +3,11 @@ import {Box, SearchField, IconButton, Icon} from "gestalt";
 
 interface Props {
   search?: string
-  onSearchChanged: (e: string) => void
+  onSearchChanged?: (e: string) => void
 }
 
 const HeaderBar = ({search = '', onSearchChanged}: Props) =>  (
-    <Box color="white" shape="rounded" padding={3} display="flex" direction="row" alignItems="center">
+    <Box color="white" shape="roundedTop" padding={3} display="flex" direction="row" alignItems="center">
       <Box padding={3}> 
         <Icon
           color="red"
@@ -20,7 +20,7 @@ const HeaderBar = ({search = '', onSearchChanged}: Props) =>  (
         <SearchField
           accessibilityLabel="Search Field"
           id="searchField"
-          onChange={({value}) => onSearchChanged(value)}
+          onChange={({value}) => onSearchChanged && onSearchChanged(value)}
           placeholder="Search and explore movies"
           value={search}
         />

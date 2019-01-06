@@ -3727,9 +3727,9 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
-gestalt@^0.63.0:
-  version "0.63.0"
-  resolved "http://registry.npmjs.org/gestalt/-/gestalt-0.63.0.tgz#39101a269c3e65c421adf135178589ee7ba71708"
+gestalt@^0.86.1:
+  version "0.86.1"
+  resolved "https://registry.yarnpkg.com/gestalt/-/gestalt-0.86.1.tgz#dcec09c04663243e0787f261eed8a3626cb70f43"
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"

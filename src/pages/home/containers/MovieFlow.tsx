@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import MoviePoster from '../../../shared/components/MoviePoster';
+import React, { Component } from 'react';
+import MoviePoster from '../../../shared/components/MoviePoster/MoviePoster';
 import MoviesApi from '../../../services/moviesApi';
-import {Masonry} from "gestalt";
-import {RouteComponentProps, withRouter} from "react-router";
+import { Masonry, Box, Card } from "gestalt";
+import { RouteComponentProps, withRouter } from "react-router";
 import { Movie } from '../../../shared/model/Movie.model';
 
 
@@ -19,18 +19,18 @@ class MovieFlow extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.state = {movies: [], page: 0};
+    this.state = { movies: [], page: 0 };
     this.loadMovies(props.search);
   }
 
   componentWillReceiveProps(nextProps: Props) {
     this.setState(
-      {movies: [], page: 0},
+      { movies: [], page: 0 },
       () => this.loadMovies(nextProps.search)
     );
   }
 
-// to be move into service / side-effect
+  // to be move into service / side-effect
   loadMovies = (query: string) => {
 
     let page = this.state.page + 1;
@@ -42,7 +42,7 @@ class MovieFlow extends Component<Props, State> {
       })
       .then((response: any) => {
         let results = response.results.filter((i: any) => !!i.poster_path);
-        this.setState((prevState) => ({movies: [...prevState.movies, ...results], page}))
+        this.setState((prevState) => ({ movies: [...prevState.movies, ...results], page }))
       });
   };
 
@@ -56,21 +56,24 @@ class MovieFlow extends Component<Props, State> {
 
   render() {
     return (
-      <Masonry
-        comp={(i: any) => (
-            <MoviePoster 
-              movie={i.data} 
+      <Box color="white" padding={3}>
+        <Masonry
+          comp={(i: any) => (
+            <Card image={<MoviePoster
+              movie={i.data}
               maxWidth="100%"
               minHeight="400px"
-              onClick={() => this.handleOnPosterClicked(i.data.id)}/>
+              onClick={() => this.handleOnPosterClicked(i.data.id)} />}>
+            </Card>
           )}
-        items={this.state.movies}
-        loadItems={this.handleLoadItems}
-        scrollContainer={() => (window as unknown as HTMLElement)}
-        minCols={3}
-        flexible={true}
-        gutterWidth={3}
-      />
+          items={this.state.movies}
+          loadItems={this.handleLoadItems}
+          scrollContainer={() => (window as unknown as HTMLElement)}
+          minCols={1}
+          flexible={true}
+          gutterWidth={3}
+        />
+      </Box>
     );
   }
 }

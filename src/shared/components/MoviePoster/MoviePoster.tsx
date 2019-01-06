@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from 'gestalt';
-import { Movie } from '../model/Movie.model';
+import { Movie } from '../../model/Movie.model';
 
 const POSTER_URL_PREFIX = 'http://image.tmdb.org/t/p/w500/';
 
@@ -14,7 +14,7 @@ interface Props {
 
 const MoviePoster = ({ movie, maxWidth, minHeight, onClick }: Props) => (
   <div className="poster">
-    <Box>
+    <Box padding={2}>
       <img alt={movie.title}
         style={{ maxWidth, minHeight }}
         src={POSTER_URL_PREFIX + movie.poster_path}

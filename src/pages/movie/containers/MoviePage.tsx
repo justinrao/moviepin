@@ -1,15 +1,16 @@
 import * as React from 'react';
-import {Container} from 'gestalt';
+import { Container, Box } from 'gestalt';
 import MoviesApi from '../../../services/moviesApi';
-import {RouteComponentProps} from "react-router";
+import { RouteComponentProps } from "react-router";
 import MovieDetails from '../components/MovieDetails';
 import { Movie } from '../../../shared/model/Movie.model';
+import HeaderBar from '../../../shared/components/HeaderBar/HeaderBar';
 
 interface RouteParams {
-   movieId: string
+  movieId: string
 }
 
-interface Props extends RouteComponentProps<RouteParams>{
+interface Props extends RouteComponentProps<RouteParams> {
 }
 
 interface State {
@@ -27,7 +28,7 @@ class MoviePage extends React.Component<Props, State> {
     const movieId = this.props.match.params.movieId;
     MoviesApi
       .get(movieId)
-      .then((response: Movie) => this.setState({movie: response}));
+      .then((response: Movie) => this.setState({ movie: response }));
 
   }
 
@@ -35,9 +36,12 @@ class MoviePage extends React.Component<Props, State> {
 
     const movie = this.state.movie;
     return (
-      <Container>
-        { movie && <MovieDetails movie={movie}></MovieDetails>}
-      </Container>
+      <Box color="gray" padding={3}>
+        <Container>
+          <HeaderBar></HeaderBar>
+          {movie && <MovieDetails movie={movie}></MovieDetails>}
+        </Container>
+      </Box>
     );
   }
 }
