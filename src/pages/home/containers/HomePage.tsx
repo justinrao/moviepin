@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Container} from 'gestalt';
 import HeaderBar from '../components/HeaderBar';
 import MovieFlow from './MovieFlow';
-import '../Home.css';
+import '../HomePage.css';
 
 interface State {
   search: string
 }
 
-class Home extends Component<{}, State> {
+class HomePage extends Component<{}, State> {
 
   constructor(props: {}) {
     super(props);
@@ -30,4 +30,4 @@ class Home extends Component<{}, State> {
   }
 }
 
-export default Home;
+export default HomePage;

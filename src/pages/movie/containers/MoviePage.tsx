@@ -2,6 +2,8 @@ import * as React from 'react';
 import {Container} from 'gestalt';
 import MoviesApi from '../../../services/moviesApi';
 import {RouteComponentProps} from "react-router";
+import MovieDetails from '../components/MovieDetails';
+import { Movie } from '../../../shared/model/Movie.model';
 
 interface RouteParams {
    movieId: string
@@ -11,10 +13,10 @@ interface Props extends RouteComponentProps<RouteParams>{
 }
 
 interface State {
-  movie?: any
+  movie?: Movie
 }
 
-class Movie extends React.Component<Props, State> {
+class MoviePage extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
@@ -25,18 +27,19 @@ class Movie extends React.Component<Props, State> {
     const movieId = this.props.match.params.movieId;
     MoviesApi
       .get(movieId)
-      .then((response:any) => this.setState({movie: response}));
+      .then((response: Movie) => this.setState({movie: response}));
 
   }
 
   render() {
 
+    const movie = this.state.movie;
     return (
       <Container>
-        <span>{JSON.stringify(this.state.movie)}</span>
+        { movie && <MovieDetails movie={movie}></MovieDetails>}
       </Container>
     );
   }
 }
 
-export default Movie;
+export default MoviePage;

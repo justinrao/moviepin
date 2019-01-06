@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import MoviePoster from '../components/MoviePoster';
+import MoviePoster from '../../../shared/components/MoviePoster';
 import MoviesApi from '../../../services/moviesApi';
 import {Masonry} from "gestalt";
 import {RouteComponentProps, withRouter} from "react-router";
+import { Movie } from '../../../shared/model/Movie.model';
 
-const POSTER_URL_PREFIX = 'http://image.tmdb.org/t/p/w500/';
 
 interface Props extends RouteComponentProps {
   search: string
 }
 
 interface State {
-  movies: Array<any>,
+  movies: Array<Movie>,
   page: number
 }
 
@@ -46,19 +46,28 @@ class MovieFlow extends Component<Props, State> {
       });
   };
 
-  handleOnPosterClicked = (movieId: string) => {
+  handleOnPosterClicked = (movieId: number) => {
     this.props.history.push(`/movie/${movieId}`);
   };
+
+  handleLoadItems = () => {
+    this.loadMovies(this.props.search);
+  }
 
   render() {
     return (
       <Masonry
-        comp={(i: any) => (<MoviePoster posterUrl={POSTER_URL_PREFIX + i.data.poster_path}
-                                 title={i.data.title}
-                                 onClick={() => this.handleOnPosterClicked(i.data.id)}/>)}
+        comp={(i: any) => (
+            <MoviePoster 
+              movie={i.data} 
+              maxWidth="100%"
+              minHeight="400px"
+              onClick={() => this.handleOnPosterClicked(i.data.id)}/>
+          )}
         items={this.state.movies}
+        loadItems={this.handleLoadItems}
+        scrollContainer={() => (window as unknown as HTMLElement)}
         minCols={3}
-        loadItems={() => this.loadMovies(this.props.search)}
         flexible={true}
         gutterWidth={3}
       />
