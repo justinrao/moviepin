@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import MoviePoster from '../../../shared/components/MoviePoster/MoviePoster';
 import MoviesApi from '../../../services/moviesApi';
-import { Masonry, Box, Card } from "gestalt";
+import { Masonry, Box, Card, IconButton } from "gestalt";
 import { RouteComponentProps, withRouter } from "react-router";
 import { Movie } from '../../../shared/model/Movie.model';
+import MovieFlowPoster from '../components/MovieFlowPoster';
 
 
 interface Props extends RouteComponentProps {
@@ -46,25 +47,29 @@ class MovieFlow extends Component<Props, State> {
       });
   };
 
-  handleOnPosterClicked = (movieId: number) => {
+  handlePosterClicked = (movieId: number) => {
     this.props.history.push(`/movie/${movieId}`);
   };
+
+
+  handleFavoriateClicked = (movieId: number) => {
+    console.log('movieId', movieId);
+  }
 
   handleLoadItems = () => {
     this.loadMovies(this.props.search);
   }
+  
 
   render() {
     return (
       <Box color="white" padding={3}>
         <Masonry
           comp={(i: any) => (
-            <Card image={<MoviePoster
-              movie={i.data}
-              maxWidth="100%"
-              minHeight="400px"
-              onClick={() => this.handleOnPosterClicked(i.data.id)} />}>
-            </Card>
+            <MovieFlowPoster 
+              movie={i.data} 
+              onPosterClicked={this.handlePosterClicked}
+              onFavoriateClicked={this.handleFavoriateClicked}/>
           )}
           items={this.state.movies}
           loadItems={this.handleLoadItems}
