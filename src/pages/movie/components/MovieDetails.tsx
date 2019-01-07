@@ -25,7 +25,7 @@ export default ({ movie }: Props) => (
                 <MovieDetailsItem icon='globe' label='Language'>
                     {movie.spoken_languages.map(l => l.name).join(', ')}
                 </MovieDetailsItem>
-                <MovieDetailsItem icon='align-top' label='Release Date'>
+                <MovieDetailsItem icon='clock' label='Release Date'>
                     {movie.release_date}
                 </MovieDetailsItem>
                 <MovieDetailsItem icon='check-circle' label='Status'>
@@ -37,7 +37,7 @@ export default ({ movie }: Props) => (
                 <MovieDetailsItem icon='globe-checked' label='Country'>
                     {movie.production_countries.map(l => l.name).join(', ')}
                 </MovieDetailsItem>
-                <MovieDetailsItem icon='align-bottom-center' label='Production Company'>
+                <MovieDetailsItem icon='shopping-bag' label='Production Company'>
                     {movie.production_companies.map(l => l.name).join(', ')}
                 </MovieDetailsItem>
                 <Box display='flex' paddingY={2}>
