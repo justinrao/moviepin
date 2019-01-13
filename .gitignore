@@ -29,3 +29,6 @@ yarn-error.log*
 
 # AWS Amplify
 amplify/*
+
+# AWS Config
+src/aws-exports.js
