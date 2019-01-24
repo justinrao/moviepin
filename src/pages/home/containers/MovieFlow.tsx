@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import MoviePoster from '../../../shared/components/MoviePoster/MoviePoster';
-import MoviesApi from '../../../services/moviesApi';
+import MoviesApi from '../../../services/movieApi';
 import { Masonry, Box, Card, IconButton } from "gestalt";
 import { RouteComponentProps, withRouter } from "react-router";
 import { Movie } from '../../../shared/model/Movie.model';
 import MovieFlowPoster from '../components/MovieFlowPoster';
-
+import {MovieUserRateApi} from '../../../services/movieUserRateApi';
 
 interface Props extends RouteComponentProps {
   search: string
@@ -52,7 +52,14 @@ class MovieFlow extends Component<Props, State> {
   };
 
 
-  handleFavoriateClicked = (movieId: number) => {
+  handleFavoriateClicked = async (movieId: number) => {
+    try {
+      await MovieUserRateApi.rateMovie(movieId, 5);
+    } catch(e) {
+      alert(e);
+      console.log(e);
+    }
+    
     console.log('movieId', movieId);
   }
 

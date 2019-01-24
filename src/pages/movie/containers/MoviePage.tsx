@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Container, Box } from 'gestalt';
-import MoviesApi from '../../../services/moviesApi';
+import MoviesApi from '../../../services/movieApi';
 import { RouteComponentProps } from "react-router";
 import MovieDetails from '../components/MovieDetails';
 import { Movie } from '../../../shared/model/Movie.model';
