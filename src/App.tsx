@@ -4,6 +4,7 @@ import HomePage from './pages/home/containers/HomePage';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import MoviePage from './pages/movie/containers/MoviePage';
 import 'gestalt/dist/gestalt.css';
+import LoginModal from './shared/containers/LoginModal';
 
 class App extends Component {
 
@@ -13,14 +14,15 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return [
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/movie/:movieId" component={MoviePage} />
         </Switch>
-      </BrowserRouter>
-    );
+      </BrowserRouter>,
+      <LoginModal/>
+    ];
   }
 }
 
