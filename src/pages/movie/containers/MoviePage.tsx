@@ -36,11 +36,8 @@ class MoviePage extends React.Component<Props, State> {
 
     const movie = this.state.movie;
     return (
-      <Box color="lightGray" padding={3}>
-        <Container>
-          <HeaderBar></HeaderBar>
+      <Box color="lightGray">
           {movie && <MovieDetails movie={movie}></MovieDetails>}
-        </Container>
       </Box>
     );
   }

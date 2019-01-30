@@ -2,11 +2,12 @@ import React from 'react';
 import {Box, SearchField, IconButton, Icon} from "gestalt";
 
 interface Props {
-  search?: string
-  onSearchChanged?: (e: string) => void
+  search?: string;
+  onSearchChanged?: (e: string) => void;
+  onProfileClicked?: () => void;
 }
 
-const HeaderBar = ({search = '', onSearchChanged}: Props) =>  (
+const HeaderBar = ({search = '', onSearchChanged, onProfileClicked}: Props) =>  (
     <Box color="white" shape="roundedTop" padding={3} display="flex" direction="row" alignItems="center">
       <Box padding={3}> 
         <Icon
@@ -26,9 +27,10 @@ const HeaderBar = ({search = '', onSearchChanged}: Props) =>  (
         />
       </Box>
       <Box paddingX={2}>
-        <IconButton accessibilityLabel="Profile" icon="person" size="md"/>
+        <IconButton accessibilityLabel="Profile" icon="person" size="md" onClick={onProfileClicked}/>
       </Box>
     </Box>
+    
   );
 
 export default HeaderBar;
