@@ -6,45 +6,13 @@ import { async } from 'q';
 import { AnyCnameRecord } from 'dns';
 
 interface Props {
+  error: string | null;
   onDismiss: () => void;
-  // onLogin: (email: string, password: String) => void;
+  onFormValueChange: (key: string, value: string) => void;
+  onSubmit: () => void;
 }
 
-const LoginModal = ({ onDismiss }: Props) => {
-
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [formValue, setFormValue] = useState({});
-  const [error, setError] = useState(null);
-
-
-  const signIn = async () => {
-    console.log('password:', password);
-    console.log('email:', email);
-    console.log('formValue:', formValue);
-    if (email && password) {
-      setError(null);
-      try {
-        await Auth.signIn(email, password);
-      } catch (e) {
-        console.log(e);
-        setError(e.message);
-      }
-    }
-  }
-
-  useEffect(() => {
-    signIn();
-  }, [formValue]);
-
-  const validAndSubmitForm = () => {
-
-    console.log('validAndSubmitForm');
-    // todo: more validation
-    if (email.length > 0 && password.length > 0) {
-      setFormValue({ email, password })
-    }
-  }
+const LoginModal = ({ error, onDismiss, onFormValueChange, onSubmit }: Props) => {
 
   return (
     <Modal
@@ -52,11 +20,13 @@ const LoginModal = ({ onDismiss }: Props) => {
       accessibilityModalLabel="Login Form"
       heading="Login to MoviePin"
       onDismiss={onDismiss}
-      footer={<LoginFooter error={error} onCancel={onDismiss} onLogin={validAndSubmitForm} />}
+      footer={<LoginFooter error={error} onCancel={onDismiss} onLogin={onSubmit} />}
       size="md">
       <Box display="flex" direction="column" position="relative" padding={4}>
-        <LoginField label="Email" field="email" type="email" onChange={v => setEmail(v)} />
-        <LoginField label="Password" field="password" type="password" onChange={v => setPassword(v)} />
+        <LoginField label="Email" field="email" type="email" 
+          onChange={v => onFormValueChange('email', v)} />
+        <LoginField label="Password" field="password" type="password" 
+          onChange={v => onFormValueChange('password', v)} />
       </Box>
     </Modal>
   )
@@ -78,7 +48,7 @@ const LoginField = ({ label, field, type, onChange }:
 
 const LoginFooter = ({ error, onCancel, onLogin }: { error: string | null, onCancel: () => void, onLogin: () => void }) => (
   <Box justifyContent="end" display="flex" direction="row" alignItems="center">
-    {error && <Box flex="grow"paddingX={4}>
+    {error && <Box flex="grow" paddingX={4}>
       <Text size="md" color='red' align="left">
         {error}
       </Text>

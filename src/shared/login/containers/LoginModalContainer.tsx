@@ -1,16 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginModal from '../components/LoginModal';
+import { Auth } from 'aws-amplify';
 
 
 interface Props {
-    // opened: boolean,
-    setOpened: (opened: boolean) => void;
+  // opened: boolean,
+  onOpenChanged: (opened: boolean) => void;
 }
-const LoginModalContainer = ({setOpened}: Props) => {
 
-    return (
-        <LoginModal onDismiss={() => setOpened(false)}/>
-    )
+interface LoginFormValues {
+  email?: string;
+  password?: string;
+}
+
+const LoginModalContainer = ({ onOpenChanged }: Props) => {
+
+  const [formValues, setFormValues] = useState<LoginFormValues>({});
+  const [submitValues, setSubmitValues] = useState<LoginFormValues>({});
+  const [error, setError] = useState(null);
+
+  const signIn = async () => {
+    console.log('submitValues:', submitValues);
+    const { email, password } = submitValues;
+    if (email && password) {
+      setError(null);
+      try {
+        await Auth.signIn(email, password);
+        onOpenChanged(false);
+      } catch (e) {
+        console.log(e);
+        setError(e.message);
+      }
+    }
+  }
+
+  useEffect(() => {
+    signIn();
+  }, [submitValues]);
+
+  const validAndSubmitForm = () => {
+
+    console.log('validAndSubmitForm');
+    // todo: more validation
+    if (formValues.email && formValues.email.length > 0
+      && formValues.password && formValues.password.length > 0) {
+      setSubmitValues(formValues);
+    }
+  }
+
+  const handleFormValueChange = (key: string, value: string) => {
+    setFormValues({ ...formValues, [key]: value })
+  }
+
+  return (
+    <LoginModal
+      error={error}
+      onDismiss={() => onOpenChanged(false)}
+      onSubmit={validAndSubmitForm}
+      onFormValueChange={handleFormValueChange} />
+  )
 }
 
 export default LoginModalContainer;

@@ -39,7 +39,7 @@ class App extends Component<{}, State> {
           </Switch>
         </BrowserRouter></Container>,
       this.state.loginModalOpened && 
-        <LoginModalContainer setOpened={this.handleLoginModalSetOpened} />
+        <LoginModalContainer onOpenChanged={this.handleLoginModalSetOpened} />
     ];
   }
 }
