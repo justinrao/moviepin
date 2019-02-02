@@ -1,4 +1,4 @@
-import React, { useState, useEffect, SyntheticEvent } from 'react';
+import React, { useState, useEffect, SyntheticEvent, FormEvent } from 'react';
 import { Modal, Box, Column, Label, Text, TextField, Button } from 'gestalt';
 import { MovieUserRateApi } from '../../../services/movieUserRateApi';
 import { Auth } from 'aws-amplify';
@@ -14,21 +14,29 @@ interface Props {
 
 const LoginModal = ({ error, onDismiss, onFormValueChange, onSubmit }: Props) => {
 
+
+  const onFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    onSubmit();
+  }
+
   return (
-    <Modal
-      accessibilityCloseLabel="Close Login"
-      accessibilityModalLabel="Login Form"
-      heading="Login to MoviePin"
-      onDismiss={onDismiss}
-      footer={<LoginFooter error={error} onCancel={onDismiss} onLogin={onSubmit} />}
-      size="md">
-      <Box display="flex" direction="column" position="relative" padding={4}>
-        <LoginField label="Email" field="email" type="email" 
-          onChange={v => onFormValueChange('email', v)} />
-        <LoginField label="Password" field="password" type="password" 
-          onChange={v => onFormValueChange('password', v)} />
-      </Box>
-    </Modal>
+    <form onSubmit={onFormSubmit}>
+      <Modal
+        accessibilityCloseLabel="Close Login"
+        accessibilityModalLabel="Login Form"
+        heading="Login to MoviePin"
+        onDismiss={onDismiss}
+        footer={<LoginFooter error={error} onCancel={onDismiss} />}
+        size="md">
+        <Box display="flex" direction="column" position="relative" padding={4}>
+          <LoginField label="Email" field="email" type="email"
+            onChange={v => onFormValueChange('email', v)} />
+          <LoginField label="Password" field="password" type="password"
+            onChange={v => onFormValueChange('password', v)} />
+        </Box>
+      </Modal>
+    </form>
   )
 }
 
@@ -46,7 +54,7 @@ const LoginField = ({ label, field, type, onChange }:
     </Box>
   )
 
-const LoginFooter = ({ error, onCancel, onLogin }: { error: string | null, onCancel: () => void, onLogin: () => void }) => (
+const LoginFooter = ({ error, onCancel }: { error: string | null, onCancel: () => void}) => (
   <Box justifyContent="end" display="flex" direction="row" alignItems="center">
     {error && <Box flex="grow" paddingX={4}>
       <Text size="md" color='red' align="left">
@@ -57,7 +65,7 @@ const LoginFooter = ({ error, onCancel, onLogin }: { error: string | null, onCan
       <Button text="Cancel" inline onClick={onCancel} />
     </Box>
     <Box paddingX={1}>
-      <Button color="red" inline text="Login" onClick={onLogin} />
+      <Button type="submit" color="red" inline text="Login" />
     </Box>
   </Box>
 )

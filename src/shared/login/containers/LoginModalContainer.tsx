@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import LoginModal from '../components/LoginModal';
 import { Auth } from 'aws-amplify';
+import { User } from '../../model/User.model';
 
 
 interface Props {
   // opened: boolean,
   onOpenChanged: (opened: boolean) => void;
+  onUserAuthenticated: (user: User) => void;
 }
 
 interface LoginFormValues {
@@ -13,7 +15,7 @@ interface LoginFormValues {
   password?: string;
 }
 
-const LoginModalContainer = ({ onOpenChanged }: Props) => {
+const LoginModalContainer = ({ onOpenChanged, onUserAuthenticated }: Props) => {
 
   const [formValues, setFormValues] = useState<LoginFormValues>({});
   const [submitValues, setSubmitValues] = useState<LoginFormValues>({});
@@ -25,7 +27,12 @@ const LoginModalContainer = ({ onOpenChanged }: Props) => {
     if (email && password) {
       setError(null);
       try {
-        await Auth.signIn(email, password);
+        
+        const cognitoUser = await Auth.signIn(email, password);
+        const userInfo = await Auth.currentUserInfo();
+        const user = {cognitoUser, userInfo};
+        console.log('user signed in:', user);
+        onUserAuthenticated(user);
         onOpenChanged(false);
       } catch (e) {
         console.log(e);
@@ -46,6 +53,7 @@ const LoginModalContainer = ({ onOpenChanged }: Props) => {
       && formValues.password && formValues.password.length > 0) {
       setSubmitValues(formValues);
     }
+    
   }
 
   const handleFormValueChange = (key: string, value: string) => {
