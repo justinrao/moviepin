@@ -34,7 +34,11 @@ const HeaderBar = ({ search = '', user, onSearchChanged, onProfileClicked }: Pro
           <Text>{user.userInfo.attributes.email}</Text>}
       </Box>
       <Box>
-        <IconButton accessibilityLabel="Profile" icon="person" size="md" onClick={onProfileClicked} />
+        <IconButton 
+        accessibilityLabel="Profile" 
+        icon={user ? "person" : "people"} 
+        size="md" 
+        onClick={onProfileClicked} />
       </Box>
     </Box>
   </Box>
