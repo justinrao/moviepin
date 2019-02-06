@@ -1,17 +1,16 @@
+import { Auth } from 'aws-amplify';
+import { Container } from 'gestalt';
+import 'gestalt/dist/gestalt.css';
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/home/containers/HomePage';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import MoviePage from './pages/movie/containers/MoviePage';
-import 'gestalt/dist/gestalt.css';
-import LoginModalContainer from './shared/login/containers/LoginModalContainer';
-import LoginModal from './shared/login/components/LoginModal';
 import HeaderBar from './shared/components/HeaderBar/HeaderBar';
-import { Container } from 'gestalt';
-import { User } from './shared/model/User.model';
-import { Auth } from 'aws-amplify';
-import LogoutModal from './shared/logout/components/LogoutModal';
+import LoginModalContainer from './shared/login/containers/LoginModalContainer';
 import LogoutModalContainer from './shared/logout/containers/LogoutModalContainer';
+import { User } from './shared/model/User.model';
+import { SearchBar } from './shared/search/SearchBar';
 
 interface State {
   loginModalOpened: boolean;
@@ -20,36 +19,24 @@ interface State {
   user: User | null;
 }
 
-
-    const DEFAULT_USER: User | null = null;
-    // const DEFAULT_USER: User = {
-      
-    //   userInfo: {
-    //     attributes: {
-    //       email: 'test@test.com'
-    //     }
-    //   }
-    // }
-
 class App extends Component<{}, State> {
 
   constructor(props: {}) {
     super(props);
-    this.state = { loginModalOpened: false, logoutModalOpened: false, search: 'Hero', user: DEFAULT_USER };
-
+    this.state = { loginModalOpened: false, logoutModalOpened: false, search: 'Hero', user: null };
   }
 
   componentDidMount() {
 
-    const loadUser = async() => {
+    const loadUser = async () => {
 
-      const user: User  = {
+      const user: User = {
         cognitoUser: await Auth.currentAuthenticatedUser(),
         userInfo: await Auth.currentUserInfo()
       }
-  
+
       console.log('relaod user:', user);
-      this.setState({user});
+      this.setState({ user });
     };
 
     loadUser();
@@ -63,33 +50,35 @@ class App extends Component<{}, State> {
 
   handleProfileClicked = () => {
     if (this.state.user) {
-      this.setState({logoutModalOpened: true});
+      this.setState({ logoutModalOpened: true });
     } else {
-      this.setState({loginModalOpened: true});
+      this.setState({ loginModalOpened: true });
     }
   }
 
   render() {
     return [
       <Container>
-        <HeaderBar search={this.state.search}
-          user={this.state.user}
-          onSearchChanged={this.handleSearchChanged} 
-          onProfileClicked={this.handleProfileClicked}/>
         <BrowserRouter>
-          <Switch>
+          <div>
+            <HeaderBar user={this.state.user} onProfileClicked={this.handleProfileClicked} >
+              <Route exact path="/" component={() =>
+                <SearchBar search={this.state.search} onSearchChanged={search => this.setState({ search })} />
+              } />
+            </HeaderBar>
             <Route exact path="/" component={() => <HomePage search={this.state.search} />} />
             <Route path="/movie/:movieId" component={MoviePage} />
-          </Switch>
-        </BrowserRouter></Container>,
-      this.state.loginModalOpened && 
-        <LoginModalContainer 
-          onOpenChanged={this.handleLoginModalSetOpened} 
-          onUserAuthenticated={(user) => this.setState({user})}/>,
-      this.state.logoutModalOpened && 
-        <LogoutModalContainer 
-          onOpenChanged={this.handleLogoutModalSetOpened} 
-          onUserLoggedOut={() => this.setState({user: null})}/>
+          </div>
+        </BrowserRouter>
+      </Container>,
+      this.state.loginModalOpened &&
+      <LoginModalContainer
+        onOpenChanged={this.handleLoginModalSetOpened}
+        onUserAuthenticated={(user) => this.setState({ user })} />,
+      this.state.logoutModalOpened &&
+      <LogoutModalContainer
+        onOpenChanged={this.handleLogoutModalSetOpened}
+        onUserLoggedOut={() => this.setState({ user: null })} />
     ];
   }
 }

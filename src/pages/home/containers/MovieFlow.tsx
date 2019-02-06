@@ -70,7 +70,7 @@ class MovieFlow extends Component<Props, State> {
 
   render() {
     return (
-      <Box color="white" padding={3}>
+      <Box color="white" paddingX={2} >
         <Masonry
           comp={(i: any) => (
             <MovieFlowPoster 
