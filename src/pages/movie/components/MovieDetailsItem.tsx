@@ -1,5 +1,4 @@
-import { Box, Icon, Text, Icons } from "gestalt";
-import { Movie } from "../../../shared/model/Movie.model";
+import { Box, Icon, Icons, Text } from "gestalt";
 import React, { ReactNode } from "react";
 
 interface Props {

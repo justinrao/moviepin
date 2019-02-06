@@ -6,10 +6,10 @@ import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/home/containers/HomePage';
 import MoviePage from './pages/movie/containers/MoviePage';
-import HeaderBar from './shared/components/HeaderBar/HeaderBar';
+import HeaderBar from './shared/header/HeaderBar/HeaderBar';
 import LoginModalContainer from './shared/login/containers/LoginModalContainer';
 import LogoutModalContainer from './shared/logout/containers/LogoutModalContainer';
-import { User } from './shared/model/User.model';
+import { User } from './models/user';
 import { SearchBar } from './shared/search/SearchBar';
 
 interface State {

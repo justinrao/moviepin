@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Container, Box} from 'gestalt';
-import HeaderBar from '../../../shared/components/HeaderBar/HeaderBar';
 import MovieFlow from './MovieFlow';
 import '../HomePage.css';
 

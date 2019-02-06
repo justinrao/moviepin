@@ -1,8 +1,8 @@
 import React from 'react';
-import MoviePoster from '../../../shared/components/MoviePoster/MoviePoster';
-import { Movie } from '../../../shared/model/Movie.model';
 import { Heading, Box, Text, Icon, Button, Link } from 'gestalt';
 import MovieDetailsItem from './MovieDetailsItem';
+import MoviePoster from '../../../shared/poster/MoviePoster/MoviePoster';
+import { Movie } from '../../../models/movie';
 
 
 interface Props {

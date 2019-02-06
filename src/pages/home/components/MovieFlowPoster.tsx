@@ -1,7 +1,7 @@
 import React, { useState, ReactNode } from 'react';
 import { Box, Card, IconButton } from 'gestalt';
-import MoviePoster from '../../../shared/components/MoviePoster/MoviePoster';
-import { Movie } from '../../../shared/model/Movie.model';
+import { Movie } from '../../../models/movie';
+import MoviePoster from '../../../shared/poster/MoviePoster/MoviePoster';
 
 interface Props {
   movie: Movie;

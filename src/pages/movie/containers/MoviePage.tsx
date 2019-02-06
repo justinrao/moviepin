@@ -1,10 +1,9 @@
+import { Box } from 'gestalt';
 import * as React from 'react';
-import { Container, Box } from 'gestalt';
-import MoviesApi from '../../../services/movieApi';
 import { RouteComponentProps } from "react-router";
+import { Movie } from '../../../models/movie';
+import MoviesApi from '../../../services/movieApi';
 import MovieDetails from '../components/MovieDetails';
-import { Movie } from '../../../shared/model/Movie.model';
-import HeaderBar from '../../../shared/components/HeaderBar/HeaderBar';
 
 interface RouteParams {
   movieId: string

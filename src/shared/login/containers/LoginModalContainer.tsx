@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import LoginModal from '../components/LoginModal';
 import { Auth } from 'aws-amplify';
-import { User } from '../../model/User.model';
+import React, { useEffect, useState } from 'react';
+import LoginModal from '../components/LoginModal';
+import { User } from '../../../models/user';
 
 
 interface Props {

@@ -1,8 +1,8 @@
 import { Box, Icon, IconButton, SearchField, Text, Heading } from "gestalt";
 import React, { ReactChild } from 'react';
-import { User } from '../../model/User.model';
 import { History } from 'history';
 import { withRouter, RouteComponentProps } from "react-router";
+import { User } from "../../../models/user";
 
 interface Props extends RouteComponentProps {
   search?: string;

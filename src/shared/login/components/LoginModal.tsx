@@ -1,9 +1,5 @@
-import React, { useState, useEffect, SyntheticEvent, FormEvent } from 'react';
-import { Modal, Box, Column, Label, Text, TextField, Button } from 'gestalt';
-import { MovieUserRateApi } from '../../../services/movieUserRateApi';
-import { Auth } from 'aws-amplify';
-import { async } from 'q';
-import { AnyCnameRecord } from 'dns';
+import { Box, Button, Column, Label, Modal, Text, TextField } from 'gestalt';
+import React, { FormEvent, SyntheticEvent } from 'react';
 
 interface Props {
   error: string | null;

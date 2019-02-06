@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import LoginModal from '../components/LogoutModal';
 import { Auth } from 'aws-amplify';
-import { User } from '../../model/User.model';
+import React, { useEffect, useState } from 'react';
 import LogoutModal from '../components/LogoutModal';
 
 

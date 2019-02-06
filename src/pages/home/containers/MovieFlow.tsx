@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import MoviePoster from '../../../shared/components/MoviePoster/MoviePoster';
 import MoviesApi from '../../../services/movieApi';
 import { Masonry, Box, Card, IconButton } from "gestalt";
 import { RouteComponentProps, withRouter } from "react-router";
-import { Movie } from '../../../shared/model/Movie.model';
 import MovieFlowPoster from '../components/MovieFlowPoster';
 import {MovieUserRateApi} from '../../../services/movieUserRateApi';
+import { Movie } from '../../../models/movie';
 
 interface Props extends RouteComponentProps {
   search: string
