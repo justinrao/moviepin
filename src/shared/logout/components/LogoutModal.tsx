@@ -1,6 +1,6 @@
 import React, { useState, useEffect, SyntheticEvent, FormEvent } from 'react';
 import { Modal, Box, Column, Label, Text, TextField, Button } from 'gestalt';
-import { MovieUserRateApi } from '../../../services/movieUserRateApi';
+import { UserMovieApi } from '../../../services/userMovieApi';
 import { Auth } from 'aws-amplify';
 import { async } from 'q';
 import { AnyCnameRecord } from 'dns';

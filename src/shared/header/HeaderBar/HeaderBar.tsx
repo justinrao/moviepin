@@ -5,13 +5,12 @@ import { withRouter, RouteComponentProps } from "react-router";
 import { User } from "../../../models/user";
 
 interface Props extends RouteComponentProps {
-  search?: string;
   user: User | null;
-  children: ReactChild;
   onProfileClicked?: () => void;
+  children: ReactChild;
 }
 
-const HeaderBar = ({ search = '', user, history, children, onProfileClicked }: Props) => (
+const HeaderBar = ({ user, history, children, onProfileClicked }: Props) => (
   <Box color="white" shape="roundedTop" padding={4} display="flex" direction="row" alignItems="center" paddingY={1}>
     <Box padding={3}>
     <div onClick={() => history.push("/")} style={{cursor: 'pointer'}} >

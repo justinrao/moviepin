@@ -11,6 +11,7 @@ import LoginModalContainer from './shared/login/containers/LoginModalContainer';
 import LogoutModalContainer from './shared/logout/containers/LogoutModalContainer';
 import { User } from './models/user';
 import { SearchBar } from './shared/search/SearchBar';
+import { BoardPage } from './pages/board/containers/BoardPage';
 
 interface State {
   loginModalOpened: boolean;
@@ -68,6 +69,7 @@ class App extends Component<{}, State> {
             </HeaderBar>
             <Route exact path="/" component={() => <HomePage search={this.state.search} />} />
             <Route path="/movie/:movieId" component={MoviePage} />
+            <Route path="/board" component={BoardPage} />
           </div>
         </BrowserRouter>
       </Container>,

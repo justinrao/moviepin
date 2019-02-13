@@ -3,7 +3,7 @@ import MoviesApi from '../../../services/movieApi';
 import { Masonry, Box, Card, IconButton } from "gestalt";
 import { RouteComponentProps, withRouter } from "react-router";
 import MovieFlowPoster from '../components/MovieFlowPoster';
-import {MovieUserRateApi} from '../../../services/movieUserRateApi';
+import {UserMovieApi} from '../../../services/userMovieApi';
 import { Movie } from '../../../models/movie';
 
 interface Props extends RouteComponentProps {
@@ -40,7 +40,7 @@ class MovieFlow extends Component<Props, State> {
         query: query,
         page: page
       })
-      .then((response: any) => {
+      .then((response: {results: Movie[]}) => {
         let results = response.results.filter((i: any) => !!i.poster_path);
         this.setState((prevState) => ({ movies: [...prevState.movies, ...results], page }))
       });
@@ -53,7 +53,7 @@ class MovieFlow extends Component<Props, State> {
 
   handleFavoriateClicked = async (movieId: number) => {
     try {
-      await MovieUserRateApi.rateMovie(movieId, 5);
+      await UserMovieApi.rateMovie(movieId, 5);
     } catch(e) {
       alert(e);
       console.log(e);

@@ -20,7 +20,7 @@ Amplify.configure({
   API: {
     endpoints: [
       {
-        name: "rate",
+        name: "userMovie",
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION
       }
