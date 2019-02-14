@@ -1,7 +1,7 @@
 import { Box } from 'gestalt';
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { RouteComponentProps } from "react-router";
-import { Movie } from '../../../models/movie';
 import MoviesApi from '../../../services/movieApi';
 import MovieDetails from '../components/MovieDetails';
 
@@ -12,34 +12,21 @@ interface RouteParams {
 interface Props extends RouteComponentProps<RouteParams> {
 }
 
-interface State {
-  movie?: Movie
-}
+const MoviePage = ({ match }: Props) => {
 
-class MoviePage extends React.Component<Props, State> {
+  const movieId = match.params.movieId;
+  const [movie, setMovie] = useState(null);
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {}
-  }
+  const loadMovie = async () => {
+    setMovie(await MoviesApi.get(movieId));
+  };
+  useEffect(() => { loadMovie() }, []);
 
-  componentDidMount() {
-    const movieId = this.props.match.params.movieId;
-    MoviesApi
-      .get(movieId)
-      .then((response: Movie) => this.setState({ movie: response }));
-
-  }
-
-  render() {
-
-    const movie = this.state.movie;
-    return (
-      <Box color="lightGray">
-          {movie && <MovieDetails movie={movie}></MovieDetails>}
-      </Box>
-    );
-  }
+  return (
+    <Box color="lightGray">
+      {movie && <MovieDetails movie={movie}></MovieDetails>}
+    </Box>
+  );
 }
 
 export default MoviePage;

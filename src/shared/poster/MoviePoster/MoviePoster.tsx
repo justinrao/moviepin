@@ -4,7 +4,6 @@ import { Movie } from '../../../models/movie';
 
 const POSTER_URL_PREFIX = 'http://image.tmdb.org/t/p/w500/';
 
-
 interface Props {
   movie: Movie;
   maxWidth?: string;

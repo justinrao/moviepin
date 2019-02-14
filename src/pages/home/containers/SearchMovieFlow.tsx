@@ -1,10 +1,6 @@
-import React, { Component, useState } from 'react';
-import MoviesApi from '../../../services/movieApi';
-import { Masonry, Box, Card, IconButton } from "gestalt";
-import { RouteComponentProps, withRouter } from "react-router";
-import MovieFlowPoster from '../../../shared/movie-flow/components/MovieFlowPoster';
-import {UserMovieApi} from '../../../services/userMovieApi';
+import React, { useState } from 'react';
 import { Movie } from '../../../models/movie';
+import MoviesApi from '../../../services/movieApi';
 import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
 
 interface Props {
