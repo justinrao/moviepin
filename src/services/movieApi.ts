@@ -32,6 +32,10 @@ class MoviesApi {
   static get(movieId: string) {
     return request('movie/' + movieId)
   }
+
+  static getList(movieIds: string[]) {
+    return Promise.all(movieIds.map(MoviesApi.get));
+  }
 }
 
 export default MoviesApi

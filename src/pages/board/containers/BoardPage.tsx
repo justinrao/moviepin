@@ -2,30 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { Heading, Box, Text } from 'gestalt';
 import { UserMovieApi } from '../../../services/userMovieApi';
 import { UserMovie } from '../../../models/userMovie';
+import { Movie } from '../../../models/movie';
+import MoviesApi from '../../../services/movieApi';
+import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
 
 
 export const BoardPage = () => {
 
-    const [userMovieList, setUserMovieList] = useState<UserMovie[]>([]);
-    
-    const loadUserMovieList = async () => {
-        const userMovieList = await UserMovieApi.getUserMovieList();
-        setUserMovieList(userMovieList);
-    }
+  const [movieList, setMovieList] = useState<Movie[]>([]);
+  const loadUserMovieList = async () => {
+    const userMovieList = await UserMovieApi.getUserMovieList();
+    const movieList = await MoviesApi.getList(userMovieList.map(i => i.movieId));
+    setMovieList(movieList);
+  }
 
-    useEffect(() => { 
-        loadUserMovieList() 
-    }, []);
+  useEffect(() => {
+    loadUserMovieList()
+  }, []);
 
-    return (
-        <Box color="white" paddingX={6} >
-            <Heading size="sm">My Board</Heading>
-            {userMovieList.map(item => (
-                <Box key={item.movieId}>
-                    <Text>{item.movieId}</Text>
-                    <Text>{item.rating}</Text>
-                </Box>
-            ))}
-        </Box>
-    )
+  return (
+    <Box color="white" paddingX={6} >
+      <Heading size="sm">My Favoriates</Heading>
+      <MovieFlow movies={movieList}/>
+    </Box>
+  )
 }

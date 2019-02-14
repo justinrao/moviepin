@@ -1,5 +1,5 @@
 export interface UserMovie {
-    movieId: number;
+    movieId: string;
     rating: number;
     createdAt: number;
 }

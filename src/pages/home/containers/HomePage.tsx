@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Container, Box} from 'gestalt';
-import MovieFlow from './MovieFlow';
+import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
 import '../HomePage.css';
+import SearchMovieFlow from './SearchMovieFlow';
 
 interface State {
   // search: string
@@ -25,7 +26,7 @@ class HomePage extends Component<Props, State> {
   render() {
     return (
       <Box color="lightGray" >
-        <MovieFlow search={this.props.search}/>
+        <SearchMovieFlow search={this.props.search}/>
      </Box>
     );
   }
