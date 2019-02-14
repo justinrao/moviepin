@@ -23,7 +23,15 @@ export const BoardPage = () => {
   return (
     <Box color="white" paddingX={6} >
       <Heading size="sm">My Favoriates</Heading>
-      <MovieFlow movies={movieList}/>
+      {movieList.length > 0 && <MovieFlow movies={movieList} />}
+      {movieList.length === 0 &&
+        <Box padding={6} minHeight={600} display="flex" alignItems="center">
+          <Box alignSelf="center" flex="grow">
+            <Heading size="xs" >
+              Please like a movie to add it to your Favorite Board!
+          </Heading>
+          </Box>
+        </Box>}
     </Box>
   )
 }

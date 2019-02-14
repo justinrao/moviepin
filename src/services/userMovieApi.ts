@@ -12,7 +12,7 @@ export class UserMovieApi {
     return await API.post(ENDPOINT_NAME, '/rate', { body });
   }
 
-  static getUserMovieList(): Promise<UserMovie[]> {
-    return API.get(ENDPOINT_NAME, '/user-movie-list', {});
+  static async getUserMovieList(): Promise<UserMovie[]> {
+    return await API.get(ENDPOINT_NAME, '/user-movie-list', {});
   }
 }
