@@ -21,8 +21,11 @@ export const BoardPage = () => {
   }, []);
 
   return (
-    <Box color="white" paddingX={6} >
-      <Heading size="sm">My Favoriates</Heading>
+    <Box color="white" padding={6} shape={"roundedBottom"}>
+      <Box marginBottom={3}>
+        <Heading size="sm">My Favorites</Heading>
+      </Box>
+
       {movieList.length > 0 && <MovieFlow movies={movieList} />}
       {movieList.length === 0 &&
         <Box padding={6} minHeight={600} display="flex" alignItems="center">

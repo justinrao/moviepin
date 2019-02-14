@@ -38,12 +38,13 @@ const App = () => {
 
   return (
     <Container>
-        <div>
           <HeaderBar user={user} onProfileClicked={handleProfileClicked} >
             <Route exact path="/" component={() =>
               <SearchBar search={search} onSearchChanged={search => setSearch(search)} />
             } />
           </HeaderBar>
+
+        <div className="app-container">
           <Route exact path="/" component={() => <HomePage search={search} />} />
           <Route path="/movie/:movieId" component={MoviePage} />
           <Route path="/board" component={BoardPage} />

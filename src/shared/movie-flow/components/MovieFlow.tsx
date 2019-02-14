@@ -26,7 +26,7 @@ const MovieFlow = ({movies, loadMovies, history}: Props) => {
   }
 
   return (
-    <Box color="white" paddingX={2} >
+    <Box color="white" >
       <Masonry
         comp={(i: any) => (
           <MovieFlowPoster 

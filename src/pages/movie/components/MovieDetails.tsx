@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default ({ movie }: Props) => (
-    <Box color="white" shape="roundedBottom" paddingX={6} display="flex" direction="column" alignItems="center" minHeight="650px">
+    <Box color="white" shape="roundedBottom" paddingX={0} display="flex" direction="column" alignItems="center" minHeight="650px">
         <Box display="flex" direction='row'>
             <Box dangerouslySetInlineStyle={{ __style: { flex: 2 } }}>
                 <MoviePoster
