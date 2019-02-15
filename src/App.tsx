@@ -13,6 +13,7 @@ import HeaderBar from './shared/header/HeaderBar/HeaderBar';
 import LoginModalContainer from './shared/login/containers/LoginModalContainer';
 import LogoutModalContainer from './shared/logout/containers/LogoutModalContainer';
 import { SearchBar } from './shared/search/SearchBar';
+import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
 
 const App = () => {
 
@@ -31,24 +32,21 @@ const App = () => {
   };
   useEffect(() => { loadUser() }, []);
 
-  const handleProfileClicked = () => {
-    const setModalOpened = user ? setLogoutModalOpened : setLoginModalOpened;
-    setModalOpened(true);
-  }
-
   return (
     <Container>
-          <HeaderBar user={user} onProfileClicked={handleProfileClicked} >
-            <Route exact path="/" component={() =>
-              <SearchBar search={search} onSearchChanged={search => setSearch(search)} />
-            } />
-          </HeaderBar>
 
-        <div className="app-container">
-          <Route exact path="/" component={() => <HomePage search={search} />} />
-          <Route path="/movie/:movieId" component={MoviePage} />
-          <Route path="/board" component={BoardPage} />
-        </div>
+      <HeaderBarContainer
+        user={user}
+        search={search}
+        onSearchChanged={setSearch}
+        onLoginClick={() => setLoginModalOpened(true)}
+        onLogoutClick={() => setLogoutModalOpened(true)}
+      ></HeaderBarContainer>
+      <div className="app-container">
+        <Route exact path="/" component={() => <HomePage search={search} />} />
+        <Route path="/movie/:movieId" component={MoviePage} />
+        <Route path="/board" component={BoardPage} />
+      </div>
 
       {loginModalOpened &&
         <LoginModalContainer

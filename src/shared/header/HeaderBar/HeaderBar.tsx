@@ -1,20 +1,26 @@
-import { Box, Heading, Icon, IconButton, Text } from "gestalt";
-import React, { ReactChild } from 'react';
-import { RouteComponentProps, withRouter } from "react-router";
+import { Box, Flyout, Heading, Icon, IconButton, Text } from "gestalt";
+import React, { ReactChild, useRef, useState } from 'react';
 import { User } from "../../../models/user";
 import "./HeaderBar.css";
 
-interface Props extends RouteComponentProps {
+interface Props {
   user: User | null;
-  onProfileClicked?: () => void;
+  onLoginClick?: () => void;
+  onHomeClick?: () => void;
   children: ReactChild;
+  menu: ReactChild;
 }
 
-const HeaderBar = ({ user, history, children, onProfileClicked }: Props) => (
-  <div className="header">
-    <Box color="white" shape="roundedTop" paddingX={4} display="flex" direction="row" alignItems="center" paddingY={2} >
+const HeaderBar = ({ user, onHomeClick, onLoginClick, menu, children }: Props) => {
+
+  const profileRef = useRef<any>(null);
+  const [profileMenuOpened, setProfileMenuOpened] = useState(false);
+  console.log('menu', menu);
+
+  return (<div className="header">
+    <Box color="white" shape="roundedTop" paddingX={4} paddingY={3} display="flex" direction="row" alignItems="center" >
       <Box padding={3}>
-        <div onClick={() => history.push("/")} style={{ cursor: 'pointer' }} >
+        <div onClick={onHomeClick} >
           <Icon
             color="red"
             icon="globe"
@@ -35,16 +41,36 @@ const HeaderBar = ({ user, history, children, onProfileClicked }: Props) => (
             <Text>{user.userInfo.attributes.email}</Text>}
         </Box>
         <Box>
-          <IconButton
-            accessibilityLabel="Profile"
-            icon={user ? "person" : "people"}
-            size="md"
-            onClick={onProfileClicked} />
+          {user
+            ? <div ref={profileRef}>
+              <IconButton
+                accessibilityLabel="Profile"
+                icon="person"
+                size="md"
+                onClick={() => setProfileMenuOpened(true)} />
+            </div>
+            : <IconButton
+              accessibilityLabel="Login"
+              icon="people"
+              size="md"
+              onClick={onLoginClick} />}
         </Box>
+        {profileMenuOpened &&
+          <div style={{ zIndex: 100 }} onClick={() => setProfileMenuOpened(false)}>
+            <Flyout
+              anchor={profileRef.current}
+              idealDirection="down"
+              onDismiss={() => setProfileMenuOpened(false)}
+              size="sm">
+              {menu}
+            </Flyout></div>}
       </Box>
+
     </Box>
   </div>
 
-);
+  )
+};
 
-export default withRouter(HeaderBar);
+
+export default HeaderBar;
