@@ -10,15 +10,16 @@ interface Props {
 }
 
 export default ({ movie }: Props) => (
-  <Box color="white" shape="roundedBottom" paddingX={0} display="flex" direction="column" alignItems="center" minHeight="650px">
-    <Box display="flex" direction='row'>
-      <Box dangerouslySetInlineStyle={{ __style: { flex: 2 } }}>
+  <Box color="white" shape="roundedBottom" paddingX={2} display="flex" direction="column" alignItems="center" minHeight="650px">
+    <Box display="flex" direction='row' width="100%">
+      <Box dangerouslySetInlineStyle={{ __style: { flex: 1 } }}>
         <MoviePoster
           movie={movie}
-          maxWidth={'100%'}
+          minHeight="450px"
+          maxHeight="450px"
         ></MoviePoster>
       </Box>
-      <Box paddingX={5} dangerouslySetInlineStyle={{ __style: { flex: 3 } }}>
+      <Box paddingX={5} dangerouslySetInlineStyle={{ __style: { flex: 2 } }}>
         <Box padding={2}>
           <Heading size="sm" color="darkGray">{movie.title}</Heading>
         </Box>

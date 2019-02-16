@@ -1,7 +1,7 @@
 
 import 'gestalt/dist/gestalt.css';
 import { Auth } from 'aws-amplify';
-import { Container } from 'gestalt';
+import { Container, Box } from 'gestalt';
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
@@ -33,7 +33,7 @@ const App = () => {
   useEffect(() => { loadUser() }, []);
 
   return (
-    <Container>
+    <div style={{minWidth: '800px', maxWidth: '1024px',  margin: 'auto'}}>
 
       <HeaderBarContainer
         user={user}
@@ -42,11 +42,13 @@ const App = () => {
         onLoginClick={() => setLoginModalOpened(true)}
         onLogoutClick={() => setLogoutModalOpened(true)}
       ></HeaderBarContainer>
-      <div className="app-container">
-        <Route exact path="/" component={() => <HomePage search={search} />} />
-        <Route path="/movie/:movieId" component={MoviePage} />
-        <Route path="/board" component={BoardPage} />
-      </div>
+      <Box shape="roundedBottom">
+        <div className="app-container">
+          <Route exact path="/" component={() => <HomePage search={search} />} />
+          <Route path="/movie/:movieId" component={MoviePage} />
+          <Route path="/board" component={BoardPage} />
+        </div>
+      </Box>
 
       {loginModalOpened &&
         <LoginModalContainer
@@ -56,7 +58,7 @@ const App = () => {
         <LogoutModalContainer
           onOpenChanged={(opened) => setLogoutModalOpened(opened)}
           onUserLoggedOut={() => setUser(null)} />}
-    </Container>
+    </div>
   );
 }
 

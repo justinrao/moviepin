@@ -18,7 +18,7 @@ export default ({ movie, onPosterClicked, onFavoriateClicked }: Props) => {
       <Card image={<MoviePoster
         movie={movie}
         maxWidth="100%"
-        minHeight="400px"
+        minHeight="350px"
         onClick={() => onPosterClicked(movie.id)} />}
         onMouseEnter={() => setMouseOver(true)}
         onMouseLeave={() => setMouseOver(false)}

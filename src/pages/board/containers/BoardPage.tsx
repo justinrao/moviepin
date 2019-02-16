@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Heading, Box, Text } from 'gestalt';
-import { UserMovieApi } from '../../../services/userMovieApi';
-import { UserMovie } from '../../../models/userMovie';
+import { Box, Heading } from 'gestalt';
+import React, { useEffect, useState } from 'react';
 import { Movie } from '../../../models/movie';
 import MoviesApi from '../../../services/movieApi';
+import { UserMovieApi } from '../../../services/userMovieApi';
+import SingleMessage from '../../../shared/layout/SingleMessage/SingleMessage';
 import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
 
 
@@ -21,20 +21,13 @@ export const BoardPage = () => {
   }, []);
 
   return (
-    <Box color="white" padding={6} shape={"roundedBottom"}>
+    <Box>
       <Box marginBottom={3}>
         <Heading size="sm">My Favorites</Heading>
       </Box>
 
-      {movieList.length > 0 && <MovieFlow movies={movieList} />}
-      {movieList.length === 0 &&
-        <Box padding={6} minHeight={600} display="flex" alignItems="center">
-          <Box alignSelf="center" flex="grow">
-            <Heading size="xs" >
-              Please like a movie to add it to your Favorite Board!
-          </Heading>
-          </Box>
-        </Box>}
+      {movieList.length > 0 ? <MovieFlow movies={movieList} />
+        : <SingleMessage>Please like a movie to add it to your Favorite Board!</SingleMessage>}
     </Box>
   )
 }

@@ -8,9 +8,7 @@ interface Props{
 }
 
 const HomePage = ({search}: Props) => (
-  <Box color="lightGray" >
     <SearchMovieFlow search={search}/>
- </Box>
 );
 
 export default HomePage;
