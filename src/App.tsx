@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import { User } from './models/user';
-import { BoardPage } from './pages/board/containers/BoardPage';
+import BoardPage from './pages/board/containers/BoardPage';
 import HomePage from './pages/home/containers/HomePage';
 import MoviePage from './pages/movie/containers/MoviePage';
 import HeaderBar from './shared/header/HeaderBar/HeaderBar';

@@ -6,8 +6,7 @@ import { UserMovieApi } from '../../../services/userMovieApi';
 import SingleMessage from '../../../shared/layout/SingleMessage/SingleMessage';
 import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
 
-
-export const BoardPage = () => {
+const BoardPage = () => {
 
   const [movieList, setMovieList] = useState<Movie[]>([]);
   const loadUserMovieList = async () => {
@@ -31,3 +30,5 @@ export const BoardPage = () => {
     </Box>
   )
 }
+
+export default BoardPage;
