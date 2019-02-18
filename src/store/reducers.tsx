@@ -1,8 +1,13 @@
 import { combineReducers } from "redux";
-import { userMovies } from './user-movie/reducer';
+import { userMovies, UserMoviesState } from './user-movie/reducer';
 
-const reducers = combineReducers({
+
+export interface RootState {
+  userMovies: UserMoviesState
+}
+
+const rootReducers = combineReducers({
   userMovies
-}) 
+});
 
-export default reducers;
+export default rootReducers;

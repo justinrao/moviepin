@@ -5,18 +5,27 @@ import MoviesApi from '../../../services/movieApi';
 import { UserMovieApi } from '../../../services/userMovieApi';
 import SingleMessage from '../../../shared/layout/SingleMessage/SingleMessage';
 import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
+import { connect } from 'react-redux';
+import { Store, Dispatch } from 'redux';
+import { loadUserMovies } from '../../../store/user-movie/actions';
+import { UserMovie } from '../../../models/userMovie';
+import { UserMoviesState } from '../../../store/user-movie/reducer';
+import { RootState } from '../../../store/reducers';
 
-const BoardPage = () => {
+interface Props {
+  userMovies: UserMovie[];
+  onLoadMovies: () => void;
+};
 
-  const [movieList, setMovieList] = useState<Movie[]>([]);
-  const loadUserMovieList = async () => {
-    const userMovieList = await UserMovieApi.getUserMovieList();
-    const movieList = await MoviesApi.getList(userMovieList.map(i => i.movieId));
-    setMovieList(movieList);
-  }
+const BoardPage = ({userMovies, onLoadMovies}: Props) => {
+
+  const movieList: Movie[] 
+    = userMovies
+      .map(i => i.movie)
+      .filter(m => m !== undefined);
 
   useEffect(() => {
-    loadUserMovieList()
+    onLoadMovies()
   }, []);
 
   return (
@@ -31,4 +40,14 @@ const BoardPage = () => {
   )
 }
 
-export default BoardPage;
+
+const mapStateToProps = (state: RootState) => ({
+  userMovies: state.userMovies.userMovies
+})
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onLoadMovies: () => dispatch(loadUserMovies())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoardPage);
+

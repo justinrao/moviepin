@@ -5,17 +5,17 @@ export const LOAD_USER_MOVIES = 'LOAD_USER_MOVIES';
 export const LOAD_USER_MOVIES_SUCCESS = 'LOAD_USER_MOVIES_SUCCESS';
 export const LOAD_USER_MOVIES_FAILED = 'LOAD_USER_MOVIES_FAILED';
 
-interface LoadUserMoviesAction {
+export interface LoadUserMoviesAction {
   type: typeof LOAD_USER_MOVIES
 }
 
-interface LoadUserMoviesSuccessAction {
+export interface LoadUserMoviesSuccessAction {
   type: typeof LOAD_USER_MOVIES_SUCCESS,
   payload: UserMovie[] 
 }
 
 
-interface LoadUserMoviesFailedAction {
+export interface LoadUserMoviesFailedAction {
   type: typeof LOAD_USER_MOVIES_FAILED,
   payload: ApiError
 }

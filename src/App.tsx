@@ -1,7 +1,7 @@
 
-import 'gestalt/dist/gestalt.css';
 import { Auth } from 'aws-amplify';
-import { Container, Box } from 'gestalt';
+import { Box } from 'gestalt';
+import 'gestalt/dist/gestalt.css';
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
@@ -9,11 +9,9 @@ import { User } from './models/user';
 import BoardPage from './pages/board/containers/BoardPage';
 import HomePage from './pages/home/containers/HomePage';
 import MoviePage from './pages/movie/containers/MoviePage';
-import HeaderBar from './shared/header/HeaderBar/HeaderBar';
+import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
 import LoginModalContainer from './shared/login/containers/LoginModalContainer';
 import LogoutModalContainer from './shared/logout/containers/LogoutModalContainer';
-import { SearchBar } from './shared/search/SearchBar';
-import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
 
 const App = () => {
 

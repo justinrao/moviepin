@@ -1,19 +1,19 @@
 import { UserMovie } from "../../models/userMovie";
 import { UserMoviesActionTypes, LOAD_USER_MOVIES, LOAD_USER_MOVIES_SUCCESS, LOAD_USER_MOVIES_FAILED } from "./types";
 
-interface UserMoviesStoreState {
+export interface UserMoviesState {
   userMovies: UserMovie[];
   loading: boolean;
   errorMessage: string;
 }
 
-const INIT_STATE: UserMoviesStoreState = {
+const INIT_STATE: UserMoviesState = {
   userMovies: [],
   loading: false,
   errorMessage: ''
 };
 
-export const userMovies = (state = INIT_STATE, action: UserMoviesActionTypes): UserMoviesStoreState => {
+export const userMovies = (state = INIT_STATE, action: UserMoviesActionTypes): UserMoviesState => {
   switch (action.type) {
     case LOAD_USER_MOVIES:
       return {
