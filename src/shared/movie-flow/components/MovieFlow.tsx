@@ -11,6 +11,7 @@ import { postUserMovie } from "../../../store/user-movie/actions";
 import { connect } from "react-redux";
 import { userMovies } from "../../../store/user-movie/reducer";
 import { UserMovie } from "../../../models/userMovie";
+import { selectFavoriteMovieIds } from "../../../store/user-movie/selectors";
 
 interface Props extends RouteComponentProps {
   movies: Movie[];
@@ -26,7 +27,6 @@ const MovieFlow = ({ movies, loadMovies, favoriteMovieIds, history, emptyMessage
     history.push(`/movie/${movieId}`);
   };
 
-  console.log(favoriteMovieIds);
   return (
     <Box color="white" >
       <Masonry
@@ -50,7 +50,7 @@ const MovieFlow = ({ movies, loadMovies, favoriteMovieIds, history, emptyMessage
 }
 
 const mapStateToProps = (state: RootState) => ({
-  favoriteMovieIds: state.userMovies.userMovies.filter(um => um.rating === 5).map(um => um.movieId)
+  favoriteMovieIds: selectFavoriteMovieIds(state)
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

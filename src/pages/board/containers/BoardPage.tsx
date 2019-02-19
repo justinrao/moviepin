@@ -6,6 +6,7 @@ import { Movie } from '../../../models/movie';
 import { UserMovie } from '../../../models/userMovie';
 import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
 import { RootState } from '../../../store/reducers';
+import { selectFavoriteMovies } from '../../../store/user-movie/selectors';
 
 interface Props {
   userMovies: UserMovie[];
@@ -35,7 +36,7 @@ const BoardPage = ({userMovies, loading}: Props) => {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  userMovies: state.userMovies.userMovies,
+  userMovies: selectFavoriteMovies(state),
   loading: state.userMovies.loading
 })
 

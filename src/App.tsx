@@ -3,7 +3,9 @@ import { Auth } from 'aws-amplify';
 import { Box } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
+import { Dispatch } from 'redux';
 import './App.css';
 import { User } from './models/user';
 import BoardPage from './pages/board/containers/BoardPage';
@@ -12,10 +14,7 @@ import MoviePage from './pages/movie/containers/MoviePage';
 import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
 import LoginModalContainer from './shared/login/containers/LoginModalContainer';
 import LogoutModalContainer from './shared/logout/containers/LogoutModalContainer';
-import { RootState } from './store/reducers';
-import { Dispatch } from 'redux';
 import { loadUserMovies } from './store/user-movie/actions';
-import { connect } from 'react-redux';
 
 
 interface Props {
@@ -70,11 +69,8 @@ const App = ({init}: Props) => {
 }
 
 
-const mapStateToProps = (state: RootState) => ({
-})
-
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   init: () => dispatch(loadUserMovies())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(null, mapDispatchToProps, null, {pure: false})(App)
