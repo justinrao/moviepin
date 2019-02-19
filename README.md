@@ -1,7 +1,7 @@
 ### Movie Pin - "Pintrest" like app for movies.
 
 ### Live Website
-https://bit.ly/2TLhrEN 
+http://moviepin-20190106221238-hostingbucket.s3-website-us-east-1.amazonaws.com/
 
 #### Stack
 - react 16
