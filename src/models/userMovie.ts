@@ -1,7 +1,7 @@
 import { Movie } from "./movie";
 
 export interface UserMovie {
-    movieId: string;
+    movieId: number;
     rating: number;
     createdAt: number;
     movie   : Movie;

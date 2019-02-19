@@ -12,8 +12,17 @@ import MoviePage from './pages/movie/containers/MoviePage';
 import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
 import LoginModalContainer from './shared/login/containers/LoginModalContainer';
 import LogoutModalContainer from './shared/logout/containers/LogoutModalContainer';
+import { RootState } from './store/reducers';
+import { Dispatch } from 'redux';
+import { loadUserMovies } from './store/user-movie/actions';
+import { connect } from 'react-redux';
 
-const App = () => {
+
+interface Props {
+  init: () => void
+}
+
+const App = ({init}: Props) => {
 
   const [loginModalOpened, setLoginModalOpened] = useState(false);
   const [logoutModalOpened, setLogoutModalOpened] = useState(false);
@@ -28,6 +37,7 @@ const App = () => {
     setUser(user);
   };
   useEffect(() => { loadUser() }, []);
+  useEffect(() => { init() }, []);
 
   return (
     <div style={{minWidth: '800px', maxWidth: '1024px',  margin: 'auto'}}>
@@ -59,4 +69,12 @@ const App = () => {
   );
 }
 
-export default App;
+
+const mapStateToProps = (state: RootState) => ({
+})
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  init: () => dispatch(loadUserMovies())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -5,11 +5,12 @@ import MoviePoster from '../../poster/MoviePoster/MoviePoster';
 
 interface Props {
   movie: Movie;
+  favoriate: boolean;
   onPosterClicked: (movieId: number) => void;
-  onFavoriateClicked: (movieId: number) => void;
+  onFavoriateClicked: (movieId: number, favoriate: boolean) => void;
 }
 
-export default ({ movie, onPosterClicked, onFavoriateClicked }: Props) => {
+export default ({ movie, favoriate, onPosterClicked, onFavoriateClicked }: Props) => {
 
   const [mouseOver, setMouseOver] = useState(false);
 
@@ -28,8 +29,8 @@ export default ({ movie, onPosterClicked, onFavoriateClicked }: Props) => {
             accessibilityLabel="Love"
             bgColor="white"
             icon="heart"
-            iconColor="red"
-            onClick={() => onFavoriateClicked(movie.id)}
+            iconColor={favoriate ? 'red' : 'gray'}
+            onClick={() => onFavoriateClicked(movie.id, !favoriate)}
           />
         </Box>}
       </Card>

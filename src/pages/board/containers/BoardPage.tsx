@@ -1,30 +1,23 @@
 import { Box, Heading } from 'gestalt';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import withLoading from '../../../core/hoc/withLoading/withLoading';
 import { Movie } from '../../../models/movie';
 import { UserMovie } from '../../../models/userMovie';
 import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
 import { RootState } from '../../../store/reducers';
-import { loadUserMovies } from '../../../store/user-movie/actions';
 
 interface Props {
   userMovies: UserMovie[];
-  onLoadMovies: () => void;
   loading: boolean;
 };
 
-const BoardPage = ({userMovies, loading, onLoadMovies}: Props) => {
+const BoardPage = ({userMovies, loading}: Props) => {
 
   const movieList: Movie[] 
     = userMovies
       .map(i => i.movie)
       .filter(m => m !== undefined);
-
-  useEffect(() => {
-    onLoadMovies()
-  }, []);
 
   const MovieFlowWithLoading = withLoading(MovieFlow);
 
@@ -41,17 +34,10 @@ const BoardPage = ({userMovies, loading, onLoadMovies}: Props) => {
   )
 }
 
-
-
-
 const mapStateToProps = (state: RootState) => ({
   userMovies: state.userMovies.userMovies,
   loading: state.userMovies.loading
 })
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onLoadMovies: () => dispatch(loadUserMovies())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(BoardPage);
+export default connect(mapStateToProps)(BoardPage);
 
