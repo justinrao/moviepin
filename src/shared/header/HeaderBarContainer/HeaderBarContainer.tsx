@@ -3,7 +3,7 @@ import { RouteComponentProps, withRouter, Route } from "react-router";
 import HeaderBar from "../HeaderBar/HeaderBar";
 import { User } from "../../../models/user";
 import { SearchBar } from "../../search/SearchBar";
-import Menu from "../../menu/Menu/Menu";
+import Menu from '../../../core/ui/Menu/Menu';
 
 interface Props extends RouteComponentProps {
   user: User | null;

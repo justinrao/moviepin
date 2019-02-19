@@ -25,7 +25,6 @@ const App = () => {
       cognitoUser: await Auth.currentAuthenticatedUser(),
       userInfo: await Auth.currentUserInfo()
     }
-    console.log('relaod user:', user);
     setUser(user);
   };
   useEffect(() => { loadUser() }, []);

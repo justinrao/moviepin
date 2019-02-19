@@ -22,7 +22,6 @@ const LoginModalContainer = ({ onOpenChanged, onUserAuthenticated }: Props) => {
   const [error, setError] = useState(null);
 
   const signIn = async () => {
-    console.log('submitValues:', submitValues);
     const { email, password } = submitValues;
     if (email && password) {
       setError(null);
@@ -31,11 +30,9 @@ const LoginModalContainer = ({ onOpenChanged, onUserAuthenticated }: Props) => {
         const cognitoUser = await Auth.signIn(email, password);
         const userInfo = await Auth.currentUserInfo();
         const user = {cognitoUser, userInfo};
-        console.log('user signed in:', user);
         onUserAuthenticated(user);
         onOpenChanged(false);
       } catch (e) {
-        console.log(e);
         setError(e.message);
       }
     }
@@ -47,7 +44,6 @@ const LoginModalContainer = ({ onOpenChanged, onUserAuthenticated }: Props) => {
 
   const validAndSubmitForm = () => {
 
-    console.log('validAndSubmitForm');
     // todo: more validation
     if (formValues.email && formValues.email.length > 0
       && formValues.password && formValues.password.length > 0) {

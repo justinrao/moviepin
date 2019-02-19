@@ -23,7 +23,6 @@ const LogoutModalContainer = ({ onOpenChanged, onUserLoggedOut }: Props) => {
       onUserLoggedOut();
       onOpenChanged(false);
     } catch (e) {
-      console.log(e);
       setError(e.message);
     }
   }

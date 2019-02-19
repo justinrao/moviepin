@@ -1,23 +1,21 @@
 import { Box, Heading } from 'gestalt';
-import React, { useEffect, useState } from 'react';
-import { Movie } from '../../../models/movie';
-import MoviesApi from '../../../services/movieApi';
-import { UserMovieApi } from '../../../services/userMovieApi';
-import SingleMessage from '../../../shared/layout/SingleMessage/SingleMessage';
-import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Store, Dispatch } from 'redux';
-import { loadUserMovies } from '../../../store/user-movie/actions';
+import { Dispatch } from 'redux';
+import withLoading from '../../../core/hoc/withLoading/withLoading';
+import { Movie } from '../../../models/movie';
 import { UserMovie } from '../../../models/userMovie';
-import { UserMoviesState } from '../../../store/user-movie/reducer';
+import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
 import { RootState } from '../../../store/reducers';
+import { loadUserMovies } from '../../../store/user-movie/actions';
 
 interface Props {
   userMovies: UserMovie[];
   onLoadMovies: () => void;
+  loading: boolean;
 };
 
-const BoardPage = ({userMovies, onLoadMovies}: Props) => {
+const BoardPage = ({userMovies, loading, onLoadMovies}: Props) => {
 
   const movieList: Movie[] 
     = userMovies
@@ -28,21 +26,27 @@ const BoardPage = ({userMovies, onLoadMovies}: Props) => {
     onLoadMovies()
   }, []);
 
+  const MovieFlowWithLoading = withLoading(MovieFlow);
+
   return (
     <Box>
       <Box marginBottom={3}>
         <Heading size="sm">My Favorites</Heading>
       </Box>
-
-      {movieList.length > 0 ? <MovieFlow movies={movieList} />
-        : <SingleMessage>Please like a movie to add it to your Favorite Board!</SingleMessage>}
+      <MovieFlowWithLoading 
+        movies={movieList} 
+        loading={loading}
+        emptyMessage="Please like a movie to add it to your Favorite Board!"/>
     </Box>
   )
 }
 
 
+
+
 const mapStateToProps = (state: RootState) => ({
-  userMovies: state.userMovies.userMovies
+  userMovies: state.userMovies.userMovies,
+  loading: state.userMovies.loading
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
