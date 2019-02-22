@@ -9,7 +9,7 @@ interface Props {
   movie: Movie;
 }
 
-export default ({ movie }: Props) => (
+const MovieDetails = ({ movie }: Props) => (
   <Box color="white" shape="roundedBottom" paddingX={2} display="flex" direction="column" alignItems="center" minHeight="650px">
     <Box display="flex" direction='row' width="100%">
       <Box dangerouslySetInlineStyle={{ __style: { flex: 1 } }}>
@@ -60,3 +60,5 @@ export default ({ movie }: Props) => (
     </Box>
   </Box>
 )
+
+export default React.memo(MovieDetails);

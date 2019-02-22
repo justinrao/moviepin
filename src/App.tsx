@@ -36,9 +36,9 @@ const App = ({ init }: Props) => {
       ></HeaderBarContainer>
       <Box shape="roundedBottom">
         <div className="app-container">
-          <Route exact path="/" component={() => <HomePage search={search} />} />
+          <Route exact path="/" render={() => <HomePage search={search} />} />
           <Route path="/movie/:movieId" component={MoviePage} />
-          <Route path="/board" component={BoardPage} />
+          <Route path="/board" render={() => <BoardPage />} />
         </div>
       </Box>
       <LoginModalContainer />

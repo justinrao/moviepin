@@ -40,5 +40,5 @@ const mapStateToProps = (state: RootState) => ({
   loading: state.userMovies.loading
 })
 
-export default connect(mapStateToProps)(BoardPage);
+export default connect(mapStateToProps)(React.memo(BoardPage));
 
