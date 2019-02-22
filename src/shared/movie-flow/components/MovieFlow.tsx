@@ -1,17 +1,14 @@
 import { Box, Masonry } from "gestalt";
 import React from 'react';
-import { RouteComponentProps, withRouter } from "react-router";
-import { Movie } from '../../../models/movie';
-import { UserMovieApi } from '../../../services/userMovieApi';
-import MovieFlowPoster from '../components/MovieFlowPoster';
-import SingleMessage from "../../../core/layout/SingleMessage/SingleMessage";
-import { RootState } from "../../../store/reducers";
-import { Dispatch } from "redux";
-import { postUserMovie } from "../../../store/user-movie/actions";
 import { connect } from "react-redux";
-import { userMovies } from "../../../store/user-movie/reducer";
-import { UserMovie } from "../../../models/userMovie";
+import { RouteComponentProps, withRouter } from "react-router";
+import { Dispatch } from "redux";
+import SingleMessage from "../../../core/layout/SingleMessage/SingleMessage";
+import { Movie } from '../../../models/movie';
+import { RootState } from "../../../store/reducers";
+import { postUserMovie } from "../../../store/user-movie/actions";
 import { selectFavoriteMovieIds } from "../../../store/user-movie/selectors";
+import MovieFlowPoster from '../components/MovieFlowPoster';
 
 interface Props extends RouteComponentProps {
   movies: Movie[];

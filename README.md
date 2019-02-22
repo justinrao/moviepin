@@ -4,14 +4,16 @@
 http://moviepin-20190106221238-hostingbucket.s3-website-us-east-1.amazonaws.com/
 
 #### Stack
-- react 16
-- react-router
-- gestalt - Pintrest component library 
-- TypeScript
-- Jest / Enzyme
+- Framework: react 16 / TypeScript
+- Routing react-router
+- Component Library: Pintrest gestalt 
+- Testing: Jest / Enzyme
+- State Management: react-redux, redux-saga, reselect
+- Auth: AWS coginito
 
 #### Design
 - Dump / Smart Component Seperation
+- Redux
 
 #### Tasks
 

@@ -2,7 +2,7 @@ import { Box, Button, Column, Label, Modal, Text, TextField } from 'gestalt';
 import React, { FormEvent, SyntheticEvent } from 'react';
 
 interface Props {
-  error: string | null;
+  error: string | undefined;
   onDismiss: () => void;
   onFormValueChange: (key: string, value: string) => void;
   onSubmit: () => void;
@@ -50,7 +50,7 @@ const LoginField = ({ label, field, type, onChange }:
     </Box>
   )
 
-const LoginFooter = ({ error, onCancel }: { error: string | null, onCancel: () => void}) => (
+const LoginFooter = ({ error, onCancel }: { error: string | undefined, onCancel: () => void}) => (
   <Box justifyContent="end" display="flex" direction="row" alignItems="center">
     {error && <Box flex="grow" paddingX={4}>
       <Text size="md" color='red' align="left">

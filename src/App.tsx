@@ -12,41 +12,27 @@ import BoardPage from './pages/board/containers/BoardPage';
 import HomePage from './pages/home/containers/HomePage';
 import MoviePage from './pages/movie/containers/MoviePage';
 import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
-import LoginModalContainer from './shared/login/containers/LoginModalContainer';
-import LogoutModalContainer from './shared/logout/containers/LogoutModalContainer';
 import { loadUserMovies } from './store/user-movie/actions';
+import LoginModalContainer from './pages/auth/login/containers/LoginModalContainer';
+import LogoutModalContainer from './pages/auth/logout/containers/LogoutModalContainer';
 
 
 interface Props {
   init: () => void
 }
 
-const App = ({init}: Props) => {
+const App = ({ init }: Props) => {
 
-  const [loginModalOpened, setLoginModalOpened] = useState(false);
-  const [logoutModalOpened, setLogoutModalOpened] = useState(false);
   const [search, setSearch] = useState('Hero');
-  const [user, setUser] = useState<User | null>(null);
-
-  const loadUser = async () => {
-    const user: User = {
-      cognitoUser: await Auth.currentAuthenticatedUser(),
-      userInfo: await Auth.currentUserInfo()
-    }
-    setUser(user);
-  };
-  useEffect(() => { loadUser() }, []);
+  
   useEffect(() => { init() }, []);
 
   return (
-    <div style={{minWidth: '800px', maxWidth: '1024px',  margin: 'auto'}}>
+    <div style={{ maxWidth: '1024px', margin: 'auto' }}>
 
       <HeaderBarContainer
-        user={user}
         search={search}
         onSearchChanged={setSearch}
-        onLoginClick={() => setLoginModalOpened(true)}
-        onLogoutClick={() => setLogoutModalOpened(true)}
       ></HeaderBarContainer>
       <Box shape="roundedBottom">
         <div className="app-container">
@@ -55,15 +41,8 @@ const App = ({init}: Props) => {
           <Route path="/board" component={BoardPage} />
         </div>
       </Box>
-
-      {loginModalOpened &&
-        <LoginModalContainer
-          onOpenChanged={(opened) => setLoginModalOpened(opened)}
-          onUserAuthenticated={(user) => setUser(user)} />}
-      {logoutModalOpened &&
-        <LogoutModalContainer
-          onOpenChanged={(opened) => setLogoutModalOpened(opened)}
-          onUserLoggedOut={() => setUser(null)} />}
+      <LoginModalContainer />
+      <LogoutModalContainer />
     </div>
   );
 }
@@ -73,4 +52,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   init: () => dispatch(loadUserMovies())
 })
 
-export default connect(null, mapDispatchToProps, null, {pure: false})(App)
+export default connect(null, mapDispatchToProps, null, { pure: false })(App)

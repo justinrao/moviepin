@@ -4,6 +4,10 @@ import HeaderBar from "../HeaderBar/HeaderBar";
 import { User } from "../../../models/user";
 import { SearchBar } from "../../search/SearchBar";
 import Menu from '../../../core/ui/Menu/Menu';
+import { connect } from 'react-redux';
+import { RootState } from '../../../store/reducers';
+import { Dispatch } from 'redux';
+import { openLoginDialog, openLogoutDialog } from '../../../store/ui/actions';
 
 interface Props extends RouteComponentProps {
   user: User | null;
@@ -32,4 +36,13 @@ const HeaderBarContainer = ({ history, user, search, onSearchChanged, onLogoutCl
   )
 }
 
-export default withRouter(HeaderBarContainer);
+const mapStateToProps = (state: RootState) => ({
+  user: state.auth.user
+})
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onLoginClick: () => dispatch(openLoginDialog()),
+  onLogoutClick: () => dispatch(openLogoutDialog())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderBarContainer));

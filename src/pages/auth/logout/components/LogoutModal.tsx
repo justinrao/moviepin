@@ -1,9 +1,5 @@
-import React, { useState, useEffect, SyntheticEvent, FormEvent } from 'react';
-import { Modal, Box, Column, Label, Text, TextField, Button } from 'gestalt';
-import { UserMovieApi } from '../../../services/userMovieApi';
-import { Auth } from 'aws-amplify';
-import { async } from 'q';
-import { AnyCnameRecord } from 'dns';
+import { Box, Button, Modal, Text } from 'gestalt';
+import React, { FormEvent } from 'react';
 
 interface Props {
   onDismiss: () => void;
@@ -11,7 +7,6 @@ interface Props {
 }
 
 const LogoutModal = ({ onDismiss, onSubmit }: Props) => {
-
 
   const onFormSubmit = (e: FormEvent) => {
     e.preventDefault();

@@ -15,7 +15,7 @@ const INIT_STATE: UserMoviesState = {
   errorMessage: ''
 };
 
-export const userMovies = (state = INIT_STATE, action: UserMoviesActionTypes): UserMoviesState => {
+export const userMoviesReducer = (state = INIT_STATE, action: UserMoviesActionTypes): UserMoviesState => {
   switch (action.type) {
     case LOAD_USER_MOVIES:
       return {
