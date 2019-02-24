@@ -23,20 +23,15 @@ interface Props {
 
 const App = ({ init }: Props) => {
 
-  const [search, setSearch] = useState('Hero');
-  
   useEffect(() => { init() }, []);
 
   return (
     <div style={{ maxWidth: '1024px', margin: 'auto' }}>
 
-      <HeaderBarContainer
-        search={search}
-        onSearchChanged={setSearch}
-      ></HeaderBarContainer>
+      <HeaderBarContainer></HeaderBarContainer>
       <Box shape="roundedBottom">
         <div className="app-container">
-          <Route exact path="/" render={() => <HomePage search={search} />} />
+          <Route exact path="/" render={() => <HomePage />} />
           <Route path="/movie/:movieId" component={MoviePage} />
           <Route path="/board" render={() => <BoardPage />} />
         </div>

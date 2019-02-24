@@ -5,9 +5,9 @@ import MoviePoster from '../../poster/MoviePoster/MoviePoster';
 
 interface Props {
   movie: Movie;
-  favoriate: boolean;
+  favoriate?: boolean;
   onPosterClicked: (movieId: number) => void;
-  onFavoriateClicked: (movieId: number, favoriate: boolean) => void;
+  onFavoriateClicked?: (movieId: number, favoriate: boolean) => void;
 }
 
 export default ({ movie, favoriate, onPosterClicked, onFavoriateClicked }: Props) => {
@@ -30,7 +30,7 @@ export default ({ movie, favoriate, onPosterClicked, onFavoriateClicked }: Props
             bgColor="white"
             icon="heart"
             iconColor={favoriate ? 'red' : 'gray'}
-            onClick={() => onFavoriateClicked(movie.id, !favoriate)}
+            onClick={() => onFavoriateClicked && onFavoriateClicked(movie.id, !favoriate)}
           />
         </Box>}
       </Card>

@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+export const FIRST_PAGE_NUMBER = 1;
+
 const commonParams = {
   api_key: "15d2ea6d0dc1d476efbca3eba2b9bbfb"
 };
@@ -18,14 +20,14 @@ const request = (name: string, params = {}) =>
     .then(unwrapData);
 
 
-export interface SearchParams {
+export interface MovieSearchParams {
   query: string,
   page: number
 }
 
 class MoviesApi {
 
-  static search(params: SearchParams) {
+  static search(params: MovieSearchParams) {
     return request('search/movie', params);
   }
 

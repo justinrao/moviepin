@@ -8,13 +8,14 @@ import { connect } from 'react-redux';
 import { RootState } from '../../../store/reducers';
 import { Dispatch } from 'redux';
 import { openLoginDialog, openLogoutDialog } from '../../../store/ui/actions';
+import { searchMovies, updateSearchText } from '../../../store/movie-search/actions';
 
 interface Props extends RouteComponentProps {
   user: User | null;
-  search: string;
-  onSearchChanged: (search: string) => void;
   onLogoutClick: () => void;
   onLoginClick: () => void;
+  search: string;
+  onSearchChanged: (search: string) => void;
 }
 
 const HeaderBarContainer = ({ history, user, search, onSearchChanged, onLogoutClick, onLoginClick }: Props) => {
@@ -37,12 +38,14 @@ const HeaderBarContainer = ({ history, user, search, onSearchChanged, onLogoutCl
 }
 
 const mapStateToProps = (state: RootState) => ({
-  user: state.auth.user
+  user: state.auth.user,
+  search: state.movieSearch.search,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onLoginClick: () => dispatch(openLoginDialog()),
-  onLogoutClick: () => dispatch(openLogoutDialog())
+  onLogoutClick: () => dispatch(openLogoutDialog()),
+  onSearchChanged: (search: string) => dispatch(updateSearchText(search))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderBarContainer));
