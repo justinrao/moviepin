@@ -1,4 +1,5 @@
 import { UserMovie } from "../../models/userMovie";
+import { ActionWithPayload } from "../types";
 
 export const LOAD_USER_MOVIES = 'LOAD_USER_MOVIES';
 export const LOAD_USER_MOVIES_SUCCESS = 'LOAD_USER_MOVIES_SUCCESS';
@@ -13,29 +14,24 @@ export interface LoadUserMoviesAction {
   type: typeof LOAD_USER_MOVIES
 }
 
-export interface LoadUserMoviesSuccessAction {
-  type: typeof LOAD_USER_MOVIES_SUCCESS,
-  payload: UserMovie[] 
+export interface LoadUserMoviesSuccessAction extends ActionWithPayload<UserMovie[]> {
+  type: typeof LOAD_USER_MOVIES_SUCCESS
 }
 
-export interface LoadUserMoviesFailureAction {
-  type: typeof LOAD_USER_MOVIES_FAILURE,
-  payload: Error
+export interface LoadUserMoviesFailureAction extends ActionWithPayload<Error> {
+  type: typeof LOAD_USER_MOVIES_FAILURE
 }
 
-export interface PostUserMovieAction {
-  type: typeof POST_USER_MOVIE,
-  payload: UserMovie
+export interface PostUserMovieAction extends ActionWithPayload<UserMovie> {
+  type: typeof POST_USER_MOVIE
 }
 
-export interface PostUserMovieSuccessAction {
-  type: typeof POST_USER_MOVIE_SUCCESS,
-  payload: UserMovie
+export interface PostUserMovieSuccessAction extends ActionWithPayload<UserMovie> {
+  type: typeof POST_USER_MOVIE_SUCCESS
 }
 
-export interface PostUserMovieFailureAction {
-  type: typeof POST_USER_MOVIE_FAILURE,
-  payload: Error
+export interface PostUserMovieFailureAction extends ActionWithPayload<Error> {
+  type: typeof POST_USER_MOVIE_FAILURE
 }
 
 export type UserMoviesActionTypes = 

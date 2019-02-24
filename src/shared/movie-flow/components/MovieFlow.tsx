@@ -20,6 +20,7 @@ interface Props extends RouteComponentProps {
 
 const MovieFlow = ({ movies, loadMovies, favoriteMovieIds, history, emptyMessage, handleFavoriateClicked }: Props) => {
 
+  console.log('Movie Flow render');
   const handlePosterClicked = (movieId: number) => {
     history.push(`/movie/${movieId}`);
   };
@@ -32,8 +33,8 @@ const MovieFlow = ({ movies, loadMovies, favoriteMovieIds, history, emptyMessage
             movie={i.data}
             favoriate={favoriteMovieIds.includes(i.data.id)}
             onPosterClicked={handlePosterClicked}
-            onFavoriateClicked={handleFavoriateClicked} />
-          )}
+            onFavoriateClicked={handleFavoriateClicked} 
+            />)}
           items={movies}
       loadItems={() => loadMovies && loadMovies()}
       scrollContainer={() => (window as unknown as HTMLElement)}
@@ -55,4 +56,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MovieFlow));
+
 
