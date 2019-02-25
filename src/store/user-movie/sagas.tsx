@@ -26,7 +26,10 @@ export function* loadUserMovies(action: LoadUserMoviesAction) {
 export function* postUserMovie(action: PostUserMovieAction) {
   const {movieId, rating} = action.payload;
   try {
-    const userMovie = yield call(UserMovieApi.rateMovie, movieId, rating);
+    const userMovie: UserMovie = yield call(UserMovieApi.rateMovie, movieId, rating);
+    const movie = yield call(MoviesApi.get, userMovie.movieId);
+    userMovie.movie = movie;
+
     yield put(postUserMovieSuccess(userMovie));
   } catch (e) {
     console.log(e);

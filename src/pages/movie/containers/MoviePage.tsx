@@ -18,7 +18,7 @@ const MoviePage = ({ match }: Props) => {
   const [movie, setMovie] = useState(null);
 
   const loadMovie = async () => {
-    setMovie(await MoviesApi.get(movieId));
+    setMovie(await MoviesApi.get(Number(movieId)));
   };
   useEffect(() => { loadMovie() }, []);
 

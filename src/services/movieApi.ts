@@ -31,11 +31,11 @@ class MoviesApi {
     return request('search/movie', params);
   }
 
-  static get(movieId: string) {
+  static get(movieId: number) {
     return request('movie/' + movieId)
   }
 
-  static getList(movieIds: string[]) {
+  static getList(movieIds: number[]) {
     return Promise.all(movieIds.map(MoviesApi.get));
   }
 }
