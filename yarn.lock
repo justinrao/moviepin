@@ -1007,9 +1007,21 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/recompose@^0.30.4":
+  version "0.30.4"
+  resolved "https://registry.yarnpkg.com/@types/recompose/-/recompose-0.30.4.tgz#f5fd767ba3d90397be765db20e96a0aeecea1d3a"
+  dependencies:
+    "@types/react" "*"
+
 "@types/redux-actions@^2.3.2":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@types/redux-actions/-/redux-actions-2.3.2.tgz#a141515f280d19fd53be7e8a9994985847423540"
+
+"@types/redux-persist@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@types/redux-persist/-/redux-persist-4.3.1.tgz#aa4c876859e0bea5155e5f7980e5b8c4699dc2e6"
+  dependencies:
+    redux-persist "*"
 
 "@types/redux-saga@^0.10.5":
   version "0.10.5"
@@ -7754,6 +7766,10 @@ redux-actions@^2.6.4:
 redux-devtools-extension@^2.13.8:
   version "2.13.8"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
+
+redux-persist@*, redux-persist@^5.10.0:
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.10.0.tgz#5d8d802c5571e55924efc1c3a9b23575283be62b"
 
 redux-saga@*, redux-saga@^1.0.1:
   version "1.0.1"

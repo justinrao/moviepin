@@ -32,3 +32,6 @@ amplify/*
 
 # AWS Config
 src/aws-exports.js
+
+# VS Code
+.history/*

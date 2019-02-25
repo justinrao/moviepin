@@ -8,33 +8,19 @@ import config from './config';
 import './index.css';
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
-import store from './store/store';
+import { store, persistor } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import aws from './aws';
 
-
-Amplify.configure({
-  Auth: {
-    mandatorySignIn: true,
-    region: config.cognito.REGION,
-    userPoolId: config.cognito.USER_POOL_ID,
-    identityPoolId: config.cognito.IDENTITY_POOL_ID,
-    userPoolWebClientId: config.cognito.APP_CLIENT_ID
-  },
-  API: {
-    endpoints: [
-      {
-        name: "userMovie",
-        endpoint: config.apiGateway.URL,
-        region: config.apiGateway.REGION
-      }
-    ]
-  }
-});
+aws.configure();
 
 ReactDOM.render(
   (<Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>
   ),
   document.getElementById('root')

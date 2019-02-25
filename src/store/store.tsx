@@ -2,19 +2,31 @@
 
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistReducer, PersistConfig, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 
+const persistConfig: PersistConfig = {
+  key: 'root',
+  storage,
+  throttle: 1000
+}
+
+// Redux-Persist for state persist and rehydration
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Redux-Saga for side-effect
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
-  rootReducer,
+export const store = createStore(
+  persistedReducer,
   composeWithDevTools(
     applyMiddleware(sagaMiddleware)
   )
 );
 
-sagaMiddleware.run(rootSaga);
+export const persistor = persistStore(store);
 
-export default store;
+sagaMiddleware.run(rootSaga);
