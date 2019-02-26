@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { logInUser } from '../../../../store/auth/actions';
 import { RootState } from '../../../../store/reducers';
-import LoginModal from '../components/LoginModal';
+import FormModal from '../../../../core/ui/FormModal/FormModal';
 import { closeLoginDialog } from '../../../../store/ui/actions';
+import LoginForm from '../components/LoginForm';
 
 
 interface Props {
@@ -42,15 +43,16 @@ const LoginModalContainer = ({ opened, onDismiss, onSubmit, error }: Props) => {
 
   return (
     <div>
-      {opened && <LoginModal
+      {opened && <FormModal
         error={error}
         onDismiss={onDismiss}
         onSubmit={validAndSubmitForm}
-        onFormValueChange={handleFormValueChange} />}
-    </div> 
+        submitLabel="Login">
+        <LoginForm onFormValueChange={handleFormValueChange} />
+      </FormModal>}
+    </div>
   )
 }
-
 
 const mapStateToProps = (state: RootState) => ({
   opened: state.ui.loginDialogOpened,
