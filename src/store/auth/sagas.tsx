@@ -3,7 +3,7 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 import { User } from '../../models/user';
 import { logInUserFailure, logInUserSuccess, logOutUserFailure, logOutUserSuccess } from './actions';
 import { LogInUserAction, LogOutUserAction, LOG_IN_USER, LOG_OUT_USER } from './types';
-import { closeLoginDialog, closeLogoutDialog } from '../ui/actions';
+import { closeAuthDialog } from '../ui/actions';
 
 export function* logInUser(action: LogInUserAction) {
 
@@ -14,7 +14,7 @@ export function* logInUser(action: LogInUserAction) {
     const userInfo = yield call([Auth, Auth.currentUserInfo]);
     const user = {cognitoUser, userInfo};
     yield put(logInUserSuccess(user as unknown as User))
-    yield put(closeLoginDialog());
+    yield put(closeAuthDialog());
   } catch (e) {
     console.log(e); 
     yield put(logInUserFailure(e));
@@ -25,7 +25,7 @@ export function* logOutUser(action: LogOutUserAction) {
   try {
     yield call([Auth, Auth.signOut]);
     yield put(logOutUserSuccess());
-    yield put(closeLogoutDialog());
+    yield put(closeAuthDialog());
   } catch (e) {
     yield put(logOutUserFailure(e));
   }

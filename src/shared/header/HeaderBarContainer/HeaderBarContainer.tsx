@@ -7,7 +7,7 @@ import Menu from '../../../core/ui/Menu/Menu';
 import { connect } from 'react-redux';
 import { RootState } from '../../../store/reducers';
 import { Dispatch } from 'redux';
-import { openLoginDialog, openLogoutDialog } from '../../../store/ui/actions';
+import { openAuthLoginDialog, openAuthLogoutDialog } from '../../../store/ui/actions';
 import { searchMovies, updateSearchText } from '../../../store/movie-search/actions';
 
 interface Props extends RouteComponentProps {
@@ -43,8 +43,8 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onLoginClick: () => dispatch(openLoginDialog()),
-  onLogoutClick: () => dispatch(openLogoutDialog()),
+  onLoginClick: () => dispatch(openAuthLoginDialog()),
+  onLogoutClick: () => dispatch(openAuthLogoutDialog()),
   onSearchChanged: (search: string) => dispatch(updateSearchText(search))
 })
 

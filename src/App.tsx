@@ -1,20 +1,17 @@
 
-import { Auth } from 'aws-amplify';
 import { Box } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import './App.css';
-import { User } from './models/user';
+import AuthDialogContainer from './pages/auth/containers/AuthDialogContainer';
 import BoardPage from './pages/board/containers/BoardPage';
 import HomePage from './pages/home/containers/HomePage';
 import MoviePage from './pages/movie/containers/MoviePage';
 import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
 import { loadUserMovies } from './store/user-movie/actions';
-import LoginModalContainer from './pages/auth/login/containers/LoginModalContainer';
-import LogoutModalContainer from './pages/auth/logout/containers/LogoutModalContainer';
 
 
 interface Props {
@@ -36,8 +33,7 @@ const App = ({ init }: Props) => {
           <Route path="/board" render={() => <BoardPage />} />
         </div>
       </Box>
-      <LoginModalContainer />
-      <LogoutModalContainer />
+      <AuthDialogContainer />
     </div>
   );
 }

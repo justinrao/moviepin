@@ -1,5 +1,5 @@
 import React from 'react';
-import FormField from '../../../../core/ui/FormField/FormField';
+import FormField from '../../../core/ui/FormField/FormField';
 
 interface Props {
   onFormValueChange: (key: string, value: string) => void;

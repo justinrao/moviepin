@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { logInUser } from '../../../../store/auth/actions';
-import { RootState } from '../../../../store/reducers';
-import FormModal from '../../../../core/ui/FormModal/FormModal';
-import { closeLoginDialog } from '../../../../store/ui/actions';
+import { logInUser } from '../../../store/auth/actions';
+import { RootState } from '../../../store/reducers';
+import FormModal from '../../../core/ui/FormModal/FormModal';
+import { closeAuthDialog } from '../../../store/ui/actions';
 import LoginForm from '../components/LoginForm';
 
 
 interface Props {
-  opened: boolean;
   onDismiss: () => void;
   onSubmit: (value: LoginFormValues) => void;
   error: string | undefined;
@@ -23,7 +22,7 @@ interface LoginFormValues {
 const INIT_FORM_VALUES = { email: '', password: '' };
 
 
-const LoginModalContainer = ({ opened, onDismiss, onSubmit, error }: Props) => {
+const LoginModalContainer = ({ onDismiss, onSubmit, error }: Props) => {
 
   const [formValues, setFormValues] = useState<LoginFormValues>(INIT_FORM_VALUES);
 
@@ -34,7 +33,6 @@ const LoginModalContainer = ({ opened, onDismiss, onSubmit, error }: Props) => {
       && formValues.password && formValues.password.length > 0) {
       onSubmit(formValues);
     }
-
   }
 
   const handleFormValueChange = (key: string, value: string) => {
@@ -42,27 +40,24 @@ const LoginModalContainer = ({ opened, onDismiss, onSubmit, error }: Props) => {
   }
 
   return (
-    <div>
-      {opened && <FormModal
+      <FormModal
         error={error}
         onDismiss={onDismiss}
         onSubmit={validAndSubmitForm}
         submitLabel="Login">
         <LoginForm onFormValueChange={handleFormValueChange} />
-      </FormModal>}
-    </div>
+      </FormModal>
   )
 }
 
 const mapStateToProps = (state: RootState) => ({
-  opened: state.ui.loginDialogOpened,
   loading: state.auth.loading,
   error: state.auth.errorMessage
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onSubmit: (form: LoginFormValues) => dispatch(logInUser(form.email, form.password)),
-  onDismiss: () => dispatch(closeLoginDialog())
+  onDismiss: () => dispatch(closeAuthDialog())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginModalContainer);

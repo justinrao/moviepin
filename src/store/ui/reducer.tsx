@@ -1,27 +1,40 @@
 
-import { logOutUserSuccess } from '../auth/actions';
-import { UIActionTypes, OPEN_LOGIN_DIALOG, CLOSE_LOGIN_DIALOG, OPEN_LOGOUT_DIALOG, CLOSE_LOGOUT_DIALOG } from './types';
+import { CLOSE_AUTH_DIALOG, OPEN_AUTH_LOGIN_DIALOG, OPEN_AUTH_LOGOUT_DIALOG, OPEN_AUTH_SIGNUP_DIALOG, UIActionTypes } from './types';
 
 export interface UIState {
-  loginDialogOpened: boolean;
-  logoutDialogOpened: boolean;
+  authDialog: AuthDialogState;
+}
+
+export type AuthDialogType = 'LOGIN' | 'LOGOUT' | 'SIGNUP';
+
+export interface AuthDialogState {
+  type?: AuthDialogType;
+  open: boolean;
 }
 
 const INITIAL_STATE: UIState = {
-  loginDialogOpened: false,
-  logoutDialogOpened: false
+  authDialog: {
+    open: false
+  }
 }
 
 export const uiReducer = (state: UIState = INITIAL_STATE, action: UIActionTypes): UIState => {
+  return {
+    ...state,
+    authDialog: authDialogReducer(state.authDialog, action)
+  }
+}
+
+const authDialogReducer = (state: AuthDialogState, action: UIActionTypes): AuthDialogState => {
   switch (action.type) {
-    case OPEN_LOGIN_DIALOG:
-      return { ...state, loginDialogOpened: true };
-    case CLOSE_LOGIN_DIALOG:
-      return { ...state, loginDialogOpened: false };
-    case OPEN_LOGOUT_DIALOG:
-      return { ...state, logoutDialogOpened: true };
-    case CLOSE_LOGOUT_DIALOG:
-      return { ...state, logoutDialogOpened: false };
+    case OPEN_AUTH_LOGIN_DIALOG:
+      return { type: 'LOGIN', open: true };
+    case CLOSE_AUTH_DIALOG:
+      return { ...state, open: false };
+    case OPEN_AUTH_LOGOUT_DIALOG:
+      return { type: 'LOGOUT', open: true };
+    case OPEN_AUTH_SIGNUP_DIALOG:
+      return { type: 'SIGNUP', open: true };
     default:
       return state;
   }
