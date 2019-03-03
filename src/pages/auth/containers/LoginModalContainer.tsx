@@ -28,11 +28,16 @@ const LoginModalContainer = ({ onDismiss, onSubmit, loading, error, onSwitchToSi
 
   const [formValues, setFormValues] = useState<LoginFormValues>(INIT_FORM_VALUES);
 
+  const [validationError, setValidationError] = useState<string>('');
+
   const validAndSubmitForm = () => {
 
-    // todo: more validation
-    if (formValues.email && formValues.email.length > 0
-      && formValues.password && formValues.password.length > 0) {
+    // todo: switch to use formik & yup for form validation
+    if (!formValues.email || formValues.email.length === 0) {
+      setValidationError('Email cannot be empty');
+    } else if (!formValues.password || formValues.password.length === 0) {
+      setValidationError('Password cannot be empty');
+    } else {
       onSubmit(formValues);
     }
   }
@@ -44,7 +49,7 @@ const LoginModalContainer = ({ onDismiss, onSubmit, loading, error, onSwitchToSi
   return (
       <FormModal
         title="Login to MoviePin"
-        error={error}
+        error={error || validationError}
         loading={loading}
         onDismiss={onDismiss}
         onSubmit={validAndSubmitForm}

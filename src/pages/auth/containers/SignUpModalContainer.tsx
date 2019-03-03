@@ -30,13 +30,16 @@ const LoginModalContainer = ({ onDismiss, onSubmit, onSwitchToLogin, error }: Pr
   const [validationError, setValidationError] = useState<string>('');
   const validAndSubmitForm = () => {
 
-    // todo: more validation
-    if (formValues.email && formValues.email.length > 0
-      && formValues.password && formValues.password.length > 0
-       && formValues.confirmPassword === formValues.password) {
-      onSubmit(formValues);
+
+    // todo: switch to use formik & yup for form validation
+    if (!formValues.email || formValues.email.length === 0) {
+      setValidationError('Email cannot be empty');
+    } else if (!formValues.password || formValues.password.length === 0) {
+      setValidationError('Password cannot be empty');
+    } else if (formValues.password !== formValues.confirmPassword) {
+      setValidationError('Confirm password must be the same as password');
     } else {
-      setValidationError('Invalid form values');
+      onSubmit(formValues);
     }
   }
 
