@@ -12,9 +12,11 @@ interface Props {
 const FormField = ({ label, field, type, onChange }: Props) => (
   <Box display="flex" direction="row" paddingX={4} paddingY={2}>
     <Column span={4}>
-      <Label htmlFor={field}>
-        <Text align="left" bold>{label}</Text>
-      </Label>
+      <Box display="flex" alignItems="center" height="100%" >
+        <Label htmlFor={field}>
+          <Text align="left" bold>{label}</Text>
+        </Label>
+      </Box>
     </Column>
     <Column span={8}>
       <TextField id={field} type={type} onChange={(args: { event: SyntheticEvent, value: string }) => onChange(args.value)} />

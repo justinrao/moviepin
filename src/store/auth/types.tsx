@@ -1,48 +1,52 @@
+import { Action } from "redux";
 import { User } from "../../models/user";
 import { ActionWithPayload } from "../types";
+import { CloseAuthDialogAction } from "../ui/types";
 
-export const LOG_IN_USER = 'LOG_IN_USER';
-export const LOG_IN_USER_SUCCESS = 'LOG_IN_USER_SUCCESS';
-export const LOG_IN_USER_FAILURE = 'LOG_IN_USER_FAILED';
+export const LOG_IN = 'LOG_IN';
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
+export const LOG_IN_FAILURE = 'LOG_IN_FAILED';
 
+export const LOG_OUT = 'LOG_OUT';
+export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
+export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
 
-export const LOG_OUT_USER = 'LOG_OUT_USER';
-export const LOG_OUT_USER_SUCCESS = 'LOG_OUT_USER_SUCCESS';
-export const LOG_OUT_USER_FAILURE = 'LOG_OUT_USER_FAILURE';
+export const SIGN_UP = 'SIGN_UP';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
 
-export interface LogInUserAction {
-  type: typeof LOG_IN_USER,
-  payload: {
-    email: string;
-    password: string;
-  }
+export interface UserAuth {
+  email: string;
+  password: string;
 }
 
-export interface LogInUserSuccessAction extends ActionWithPayload<User> {
-  type: typeof LOG_IN_USER_SUCCESS;
-}
+export interface LogInAction extends ActionWithPayload<typeof LOG_IN, UserAuth> {}
 
-export interface LogInUserFailureAction extends ActionWithPayload<Error> {
-  type: typeof LOG_IN_USER_FAILURE,
-  payload: Error
-}
+export interface LogInSuccessAction extends ActionWithPayload<typeof LOG_IN_SUCCESS, User> {};
 
-export interface LogOutUserAction {
-  type: typeof LOG_OUT_USER
-}
+export interface LogInFailureAction extends ActionWithPayload<typeof LOG_IN_FAILURE, Error> {};
 
-export interface LogOutUserSuccessAction {
-  type: typeof LOG_OUT_USER_SUCCESS
-}
+export interface LogOutAction extends Action<typeof LOG_OUT> {};
 
-export interface LogOutUserFailureAction extends ActionWithPayload<Error> {
-  type: typeof LOG_OUT_USER_FAILURE
-}
+export interface LogOutSuccessAction extends Action<typeof LOG_OUT_SUCCESS> {};
+
+export interface LogOutFailureAction extends ActionWithPayload<typeof LOG_OUT_FAILURE, Error> {};
+
+export interface SignUpAction extends ActionWithPayload<typeof SIGN_UP, UserAuth> {};
+
+export interface SignUpSuccessAction extends ActionWithPayload<typeof SIGN_UP_SUCCESS, User> {};
+
+export interface SignUpFailureAction extends ActionWithPayload<typeof SIGN_UP_FAILURE, Error> {};
+
 
 export type AuthActionTypes =
-  LogInUserAction |
-  LogInUserSuccessAction |
-  LogInUserFailureAction |
-  LogOutUserAction |
-  LogOutUserSuccessAction |
-  LogOutUserFailureAction;
+  LogInAction |
+  LogInSuccessAction |
+  LogInFailureAction |
+  LogOutAction |
+  LogOutSuccessAction |
+  LogOutFailureAction |
+  SignUpAction |
+  SignUpSuccessAction |
+  SignUpFailureAction |
+  CloseAuthDialogAction;

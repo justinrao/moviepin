@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { logInUser } from '../../../store/auth/actions';
+import { logIn } from '../../../store/auth/actions';
 import { RootState } from '../../../store/reducers';
 import FormModal from '../../../core/ui/FormModal/FormModal';
-import { closeAuthDialog } from '../../../store/ui/actions';
+import { closeAuthDialog, openAuthSignupDialog } from '../../../store/ui/actions';
 import LoginForm from '../components/LoginForm';
 
 
 interface Props {
   onDismiss: () => void;
   onSubmit: (value: LoginFormValues) => void;
+  onSwitchToSignUp: () => void;
   error: string | undefined;
+  loading: boolean;
 }
 
 interface LoginFormValues {
@@ -22,7 +24,7 @@ interface LoginFormValues {
 const INIT_FORM_VALUES = { email: '', password: '' };
 
 
-const LoginModalContainer = ({ onDismiss, onSubmit, error }: Props) => {
+const LoginModalContainer = ({ onDismiss, onSubmit, loading, error, onSwitchToSignUp }: Props) => {
 
   const [formValues, setFormValues] = useState<LoginFormValues>(INIT_FORM_VALUES);
 
@@ -41,11 +43,14 @@ const LoginModalContainer = ({ onDismiss, onSubmit, error }: Props) => {
 
   return (
       <FormModal
+        title="Login to MoviePin"
         error={error}
+        loading={loading}
         onDismiss={onDismiss}
         onSubmit={validAndSubmitForm}
         submitLabel="Login">
-        <LoginForm onFormValueChange={handleFormValueChange} />
+        <LoginForm onFormValueChange={handleFormValueChange}
+                  onSignUpClicked={onSwitchToSignUp} />
       </FormModal>
   )
 }
@@ -56,8 +61,9 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onSubmit: (form: LoginFormValues) => dispatch(logInUser(form.email, form.password)),
-  onDismiss: () => dispatch(closeAuthDialog())
+  onSubmit: (form: LoginFormValues) => dispatch(logIn(form.email, form.password)),
+  onDismiss: () => dispatch(closeAuthDialog()),
+  onSwitchToSignUp: () => dispatch(openAuthSignupDialog())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginModalContainer);

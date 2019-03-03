@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import FormModal from '../../../core/ui/FormModal/FormModal';
-import { logOutUser } from '../../../store/auth/actions';
+import { logOut } from '../../../store/auth/actions';
 import { RootState } from '../../../store/reducers';
 import { closeAuthDialog } from '../../../store/ui/actions';
 import LogoutMessage from '../components/LogoutMessage';
@@ -16,6 +16,7 @@ interface Props {
 
 const LogoutModalContainer = ({ onSubmit, onDismiss }: Props) =>  (
      <FormModal
+     title="Logout MoviePin"
       onDismiss={onDismiss}
       onSubmit={onSubmit} 
       submitLabel="Logout">
@@ -29,7 +30,7 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onSubmit: () => dispatch(logOutUser()),
+  onSubmit: () => dispatch(logOut()),
   onDismiss: () => dispatch(closeAuthDialog())
 })
 

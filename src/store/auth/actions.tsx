@@ -1,31 +1,46 @@
 
-import { LOG_OUT_USER, LOG_OUT_USER_FAILURE, LOG_OUT_USER_SUCCESS, LOG_IN_USER, LOG_IN_USER_FAILURE, LOG_IN_USER_SUCCESS } from './types';
+import { LOG_OUT, LOG_OUT_FAILURE, LOG_OUT_SUCCESS, LOG_IN, LOG_IN_FAILURE, LOG_IN_SUCCESS, SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './types';
 import { User } from '../../models/user';
 
-export const logInUser = (email: string, password: string) => ({
-  type: LOG_IN_USER,
+export const logIn = (email: string, password: string) => ({
+  type: LOG_IN,
   payload: { email, password }
 })
 
-export const logInUserSuccess = (user: User) => ({
-  type: LOG_IN_USER_SUCCESS,
+export const logInSuccess = (user: User) => ({
+  type: LOG_IN_SUCCESS,
   payload: user
 })
 
-export const logInUserFailure = (error: Error) => ({
-  type: LOG_IN_USER_FAILURE,
+export const logInFailure = (error: Error) => ({
+  type: LOG_IN_FAILURE,
   payload: error
 })
 
-export const logOutUser = () => ({
-  type: LOG_OUT_USER
+export const logOut = () => ({
+  type: LOG_OUT
 })
 
-export const logOutUserSuccess = () => ({
-  type: LOG_OUT_USER_SUCCESS
+export const logOutSuccess = () => ({
+  type: LOG_OUT_SUCCESS
 })
 
-export const logOutUserFailure = (error: Error) => ({
-  type: LOG_OUT_USER_FAILURE,
+export const logOutFailure = (error: Error) => ({
+  type: LOG_OUT_FAILURE,
+  payload: error
+})
+
+export const signUp = (email: string, password: string) => ({
+  type: SIGN_UP,
+  payload: { email, password }
+})
+
+export const signUpSuccess = (user: User) => ({
+  type: SIGN_UP_SUCCESS,
+  payload: user
+})
+
+export const signUpFailure = (error: Error) => ({
+  type: SIGN_UP_FAILURE,
   payload: error
 })

@@ -1,30 +1,39 @@
 import { User } from "../../models/user";
-import { AuthActionTypes, LOG_IN_USER, LOG_IN_USER_SUCCESS, LOG_IN_USER_FAILURE, LOG_OUT_USER, LOG_OUT_USER_SUCCESS, LOG_OUT_USER_FAILURE } from "./types";
+import { CLOSE_AUTH_DIALOG } from "../ui/types";
+import { AuthActionTypes, LOG_IN, LOG_IN_FAILURE, LOG_IN_SUCCESS, LOG_OUT, LOG_OUT_FAILURE, LOG_OUT_SUCCESS, SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS } from "./types";
 
 export interface AuthState {
-  user: User | null;
+  user?: User;
+  username?: string;
   loading: boolean;
   error: boolean;
   errorMessage?: string;
 }
 
 const INIT_STATE: AuthState = {
-  user: null,
   loading: false,
   error: false
 };
 
 export const authReducer = (state = INIT_STATE, action: AuthActionTypes): AuthState => {
   switch (action.type) {
-    case LOG_IN_USER:
+    case SIGN_UP:
+    case LOG_IN:
+      return {
+        username: action.payload.email,
+        loading: true,
+        error: false,
+        errorMessage: ''
+      }
+    case LOG_OUT:
       return {
         ...state,
         loading: true,
         error: false,
         errorMessage: ''
       }
-
-    case LOG_IN_USER_SUCCESS:
+    case LOG_IN_SUCCESS:
+    case SIGN_UP_SUCCESS:
       return {
         ...state,
         user: action.payload,
@@ -32,36 +41,30 @@ export const authReducer = (state = INIT_STATE, action: AuthActionTypes): AuthSt
         error: false
       }
 
-    case LOG_IN_USER_FAILURE:
+    case LOG_OUT_SUCCESS:
       return {
         ...state,
-        loading: false,
-        error: true,
-        errorMessage: action.payload.message
-      }
-
-      case LOG_OUT_USER:
-      return {
-        ...state,
-        loading: true,
-        error: false,
-        errorMessage: ''
-      }
-
-    case LOG_OUT_USER_SUCCESS:
-      return {
-        ...state,
-        user: null,
+        user: undefined,
         loading: false,
         error: false
       }
 
-    case LOG_OUT_USER_FAILURE:
+    case LOG_IN_FAILURE:
+    case LOG_OUT_FAILURE:
+    case SIGN_UP_FAILURE:
       return {
         ...state,
         loading: false,
         error: true,
         errorMessage: action.payload.message
+      }
+
+    case CLOSE_AUTH_DIALOG:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        errorMessage: ''
       }
 
     default:

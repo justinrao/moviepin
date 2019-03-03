@@ -20,7 +20,6 @@ interface Props extends RouteComponentProps {
 
 const MovieFlow = ({ movies, loadMovies, favoriteMovieIds, history, emptyMessage, handleFavoriateClicked }: Props) => {
 
-  console.log('Movie Flow render');
   const handlePosterClicked = (movieId: number) => {
     history.push(`/movie/${movieId}`);
   };

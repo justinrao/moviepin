@@ -5,7 +5,7 @@ export interface UIState {
   authDialog: AuthDialogState;
 }
 
-export type AuthDialogType = 'LOGIN' | 'LOGOUT' | 'SIGNUP';
+export type AuthDialogType = 'LOGIN' | 'LOGOUT' | 'SIGNUP' ;
 
 export interface AuthDialogState {
   type?: AuthDialogType;

@@ -4,7 +4,7 @@ import { User } from "../../../models/user";
 import "./HeaderBar.css";
 
 interface Props {
-  user: User | null;
+  user?: User;
   onLoginClick?: () => void;
   onHomeClick?: () => void;
   children: ReactChild;
@@ -36,7 +36,7 @@ const HeaderBar = ({ user, onHomeClick, onLoginClick, menu, children }: Props) =
       </Box>
       <Box paddingX={2} display="flex">
         <Box alignSelf="center">
-          {user &&
+          {user && user.userInfo &&
             <Text>{user.userInfo.attributes.email}</Text>}
         </Box>
         <Box>

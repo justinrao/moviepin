@@ -11,7 +11,7 @@ import { openAuthLoginDialog, openAuthLogoutDialog } from '../../../store/ui/act
 import { searchMovies, updateSearchText } from '../../../store/movie-search/actions';
 
 interface Props extends RouteComponentProps {
-  user: User | null;
+  user?: User;
   onLogoutClick: () => void;
   onLoginClick: () => void;
   search: string;

@@ -4,29 +4,31 @@ import { RootState } from '../../../store/reducers';
 import { AuthDialogType } from '../../../store/ui/reducer';
 import LoginModalContainer from './LoginModalContainer';
 import LogoutModalContainer from './LogoutModalContainer';
+import SignUpModalContainer from './SignUpModalContainer';
 
 
 interface Props {
-  type: AuthDialogType;
+  type?: AuthDialogType;
   open: boolean;
 }
 
 
-const getAuthDialog = (type: AuthDialogType): ComponentType => {
-  switch(type) {
+const getAuthDialog = (type?: AuthDialogType): ComponentType => {
+  switch (type) {
     case 'LOGIN':
       return LoginModalContainer;
+    case 'SIGNUP':
+      return SignUpModalContainer;
     default:
-      return LogoutModalContainer
+      return LogoutModalContainer;
   }
 }
 
-const AuthContainer = ({ open, type }: Props) => {
-
+const AuthDialogContainer = ({ open, type }: Props) => {
   const AuthDialog = getAuthDialog(type);
   return (
     <div>
-      {open && <AuthDialog/>}
+      {open && AuthDialog && <AuthDialog />}
     </div>
   )
 }
@@ -36,4 +38,4 @@ const mapStateToProps = (state: RootState) => ({
   type: state.ui.authDialog.type
 })
 
-export default connect(mapStateToProps)(LoginModalContainer);
+export default connect(mapStateToProps)(AuthDialogContainer);
