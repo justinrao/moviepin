@@ -7,11 +7,12 @@ interface Props {
   user?: User;
   onLoginClick?: () => void;
   onHomeClick?: () => void;
+  onFavoriteClick?: () => void;
   children: ReactChild;
   menu: ReactChild;
 }
 
-const HeaderBar = ({ user, onHomeClick, onLoginClick, menu, children }: Props) => {
+const HeaderBar = ({ user, onHomeClick, onLoginClick, onFavoriteClick, menu, children }: Props) => {
 
   const profileRef = useRef<any>(null);
   const [profileMenuOpened, setProfileMenuOpened] = useState(false);
@@ -35,10 +36,23 @@ const HeaderBar = ({ user, onHomeClick, onLoginClick, menu, children }: Props) =
         {children}
       </Box>
       <Box paddingX={2} display="flex">
-        <Box alignSelf="center">
-          {user && user.userInfo &&
-            <Text>{user.userInfo.attributes.email}</Text>}
-        </Box>
+        {user && user.userInfo &&
+          <Box alignSelf="center">
+
+            <Text>{user.userInfo.attributes.email}</Text>
+          </Box>
+        }
+        {user && user.userInfo &&
+          <Box>
+            <IconButton
+              accessibilityLabel="My Favorite"
+              bgColor="white"
+              icon="heart"
+              iconColor="red"
+              onClick={onFavoriteClick}
+            />
+          </Box>
+        }
         <Box>
           {user
             ? <div ref={profileRef}>

@@ -27,9 +27,10 @@ const HeaderBarContainer = ({ history, user, search, onSearchChanged, onLogoutCl
 
   const menu = <Menu menuDefs={menuDefs}/>;
   const onHomeClick = () => { history.push('/')};
+  const onFavoriteClick = ()=> { history.push('/board')};
 
   return (
-    <HeaderBar {...{user, menu, onLoginClick, onHomeClick }}>
+    <HeaderBar {...{user, menu, onLoginClick, onHomeClick, onFavoriteClick }}>
       <Route exact path="/" render={() =>
         <SearchBar search={search} onSearchChanged={onSearchChanged} />
       } />
