@@ -9,6 +9,9 @@ import { RootState } from "../../../store/reducers";
 import { postUserMovie } from "../../../store/user-movie/actions";
 import { selectFavoriteMovieIds } from "../../../store/user-movie/selectors";
 import MovieFlowPoster from '../components/MovieFlowPoster';
+import { selectUser } from "../../../store/auth/selectors";
+import { User } from "../../../models/user";
+import { openAuthLoginDialog } from "../../../store/ui/actions";
 
 interface Props extends RouteComponentProps {
   movies: Movie[];
@@ -16,9 +19,19 @@ interface Props extends RouteComponentProps {
   loadMovies?: () => void;
   emptyMessage?: string;
   handleFavoriateClicked: (movieId: number, favoriate: boolean) => void;
+  handleLogin: () => void;
+  user?: User;
 }
 
-const MovieFlow = ({ movies, loadMovies, favoriteMovieIds, history, emptyMessage, handleFavoriateClicked }: Props) => {
+const MovieFlow = ({
+    movies, 
+    loadMovies, 
+    favoriteMovieIds, 
+    history, 
+    emptyMessage, 
+    handleFavoriateClicked,
+    handleLogin,
+    user }: Props) => {
 
   const handlePosterClicked = (movieId: number) => {
     history.push(`/movie/${movieId}`);
@@ -32,26 +45,28 @@ const MovieFlow = ({ movies, loadMovies, favoriteMovieIds, history, emptyMessage
             movie={i.data}
             favoriate={favoriteMovieIds.includes(i.data.id)}
             onPosterClicked={handlePosterClicked}
-            onFavoriateClicked={handleFavoriateClicked} 
-            />)}
-          items={movies}
-      loadItems={() => loadMovies && loadMovies()}
-      scrollContainer={() => (window as unknown as HTMLElement)}
-      minCols={1}
-      flexible={true}
-      gutterWidth={3}
+            onFavoriateClicked={user ? handleFavoriateClicked : handleLogin}
+          />)}
+        items={movies}
+        loadItems={() => loadMovies && loadMovies()}
+        scrollContainer={() => (window as unknown as HTMLElement)}
+        minCols={1}
+        flexible={true}
+        gutterWidth={3}
       />
-        {movies.length === 0 && emptyMessage && <SingleMessage>{emptyMessage}</SingleMessage>}
+      {movies.length === 0 && emptyMessage && <SingleMessage>{emptyMessage}</SingleMessage>}
     </Box>
   )
 }
 
 const mapStateToProps = (state: RootState) => ({
-  favoriteMovieIds: selectFavoriteMovieIds(state)
+  favoriteMovieIds: selectFavoriteMovieIds(state),
+  user: selectUser(state)
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  handleFavoriateClicked: (movieId: number, favoriate: boolean) => dispatch(postUserMovie(movieId, favoriate? 5 : 0))
+  handleFavoriateClicked: (movieId: number, favoriate: boolean) => dispatch(postUserMovie(movieId, favoriate ? 5 : 0)),
+  handleLogin: () => dispatch(openAuthLoginDialog())
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MovieFlow));
