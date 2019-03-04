@@ -1,6 +1,7 @@
 import { UserMovie } from "../../models/userMovie";
 import { ActionWithPayload } from "../types";
 import { Action } from "redux";
+import { LogInSuccessAction, LogOutSuccessAction } from "../auth/types";
 
 export const LOAD_USER_MOVIES = 'LOAD_USER_MOVIES';
 export const LOAD_USER_MOVIES_SUCCESS = 'LOAD_USER_MOVIES_SUCCESS';
@@ -29,4 +30,6 @@ export type UserMoviesActionTypes =
   LoadUserMoviesFailureAction |
   PostUserMovieAction |
   PostUserMovieSuccessAction |
-  PostUserMovieFailureAction;
+  PostUserMovieFailureAction |
+  LogInSuccessAction |
+  LogOutSuccessAction ;

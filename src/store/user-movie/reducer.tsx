@@ -1,5 +1,6 @@
 import { UserMovie } from "../../models/userMovie";
 import { UserMoviesActionTypes, LOAD_USER_MOVIES, LOAD_USER_MOVIES_SUCCESS, LOAD_USER_MOVIES_FAILURE, POST_USER_MOVIE, POST_USER_MOVIE_FAILURE, POST_USER_MOVIE_SUCCESS } from "./types";
+import { LOG_OUT_SUCCESS } from "../auth/types";
 
 export interface UserMoviesState {
   userMovies: UserMovie[];
@@ -63,6 +64,8 @@ export const userMoviesReducer = (state = INIT_STATE, action: UserMoviesActionTy
         error: true,
         errorMessage: action.payload.message
       }
+    case LOG_OUT_SUCCESS:
+      return INIT_STATE;
     default:
       return state;
   }
