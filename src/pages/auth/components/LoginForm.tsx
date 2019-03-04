@@ -9,19 +9,26 @@ interface Props {
 
 const LoginForm = ({ onFormValueChange, onSignUpClicked }: Props) => (
   <Box>
-    <Box >
+    <Box>
       <FormField label="Email" field="email" type="email"
         onChange={v => onFormValueChange('email', v)} />
       <FormField label="Password" field="password" type="password"
         onChange={v => onFormValueChange('password', v)} />
     </Box>
-    <Box display="flex" paddingX={4} paddingY={2} marginTop={1}> 
-      <Text>If you don't have an account, please
+    <Box paddingX={4}>
+      <Box paddingY={2} >
+        <Text>If you don't have an account, please
         <Text color="red" inline={true}>
-          <Link href="#" onClick={onSignUpClicked}> sign-up</Link>
-        </Text>
-        .
+            <Link href="#" onClick={onSignUpClicked}> sign-up</Link>
+          </Text>
+          .
       </Text>
+      </Box>
+      <Box paddingY={2}>
+        <Text>
+          Or use sample user 'guest@exmaple.com' password 'P@ssw0rd1!'.
+      </Text>
+      </Box>
     </Box>
   </Box>
 )
