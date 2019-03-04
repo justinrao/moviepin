@@ -25,12 +25,12 @@ const HeaderBarContainer = ({ history, user, search, onSearchChanged, onLogoutCl
     { key: 'logout', label: 'Log Out', onClick: onLogoutClick }
   ];
 
-  const menu = <Menu menuDefs={menuDefs}/>;
-  const onHomeClick = () => { history.push('/')};
-  const onFavoriteClick = ()=> { history.push('/board')};
+  const menu = <Menu menuDefs={menuDefs} />;
+  const onHomeClick = () => { history.push('/') };
+  const onFavoriteClick = () => { history.push('/board') };
 
   return (
-    <HeaderBar {...{user, menu, onLoginClick, onHomeClick, onFavoriteClick }}>
+    <HeaderBar {...{ user, menu, onLoginClick, onHomeClick, onFavoriteClick }}>
       <Route exact path="/" render={() =>
         <SearchBar search={search} onSearchChanged={onSearchChanged} />
       } />
@@ -49,4 +49,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   onSearchChanged: (search: string) => dispatch(updateSearchText(search))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderBarContainer));
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(withRouter(HeaderBarContainer));

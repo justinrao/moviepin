@@ -1,7 +1,7 @@
 import { Auth } from 'aws-amplify';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { User } from '../../models/user';
-import { closeAuthDialog, openAuthSignupConfirmDialog } from '../ui/actions';
+import { closeAuthDialog } from '../ui/actions';
 import { logInFailure, logInSuccess, logOutFailure, logOutSuccess, signUpFailure, signUpSuccess } from './actions';
 import { LogInAction, LogOutAction, LOG_IN, LOG_OUT, SignUpAction, SIGN_UP } from './types';
 
@@ -35,7 +35,7 @@ function* signUp(action: SignUpAction) {
   try {
     const response = yield call([Auth, Auth.signUp], { username: email, password });
     yield put(signUpSuccess(response.user));
-    yield put(openAuthSignupConfirmDialog());
+    yield put(closeAuthDialog());
   } catch (e) {
     yield put(signUpFailure(e));
   }
