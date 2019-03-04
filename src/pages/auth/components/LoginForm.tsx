@@ -26,7 +26,7 @@ const LoginForm = ({ onFormValueChange, onSignUpClicked }: Props) => (
       </Box>
       <Box paddingY={2}>
         <Text>
-          Or use sample user 'guest@exmaple.com' password 'P@ssw0rd1!'.
+          Or use sample user 'guest@example.com' password 'P@ssw0rd1!'.
       </Text>
       </Box>
     </Box>

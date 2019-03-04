@@ -21,7 +21,7 @@ interface LoginFormValues {
   password: string;
 }
 
-const INIT_FORM_VALUES = { email: '', password: '' };
+const INIT_FORM_VALUES = { email: 'guest@example.com', password: 'P@ssw0rd1!' };
 
 
 const LoginModalContainer = ({ onDismiss, onSubmit, loading, error, onSwitchToSignUp }: Props) => {
