@@ -1,16 +1,16 @@
-### Movie Pin - "Pintrest" like app for movies.
+## Movie Pin - "Pintrest" like app for movies.
 
 ### Live Website
-[MoviePin AWS Link](https://master.d2yzcjaz3dlio3.amplifyapp.com/)
+[MoviePin @ AWS Amplify](https://master.d2yzcjaz3dlio3.amplifyapp.com/)
 
 ### Features
 - Search great movie
 - See movie details
 - Create user account
-- Pin favoriate movie to a pin board
+- Pin favorite movies to personal board
 
-#### Stack
-- Framework: React 16 / TypeScript
+### Stack
+- Framework: React 16 (incl. React Hooks) / TypeScript 
 - Routing: react-router
 - Component Library: Pintrest gestalt 
 - State Management: react-redux, reselect
@@ -18,19 +18,26 @@
 - Auth: AWS Coginito
 - API call: Axios / AWS Amplify
 
-#### APIs
+### APIs
 - The Movie DB API (3rd party)
-- User Movie API 
+- [User Movie API](https://github.com/justinrao/moviepin-api) (AWS Lambda + Dynamo DB)
 
-#### Design
+### Design
 - Dump / Smart Component Seperation
-- Shared State / Uni-directional data flow
+- Flux Shared State / Uni-directional data flow
 - Render Props
 - High Order Component
 
-#### Tasks
+#### To Do
+- Add TS-Lint + Prettier with git hook
+- Add more testing
+- Add react-redux-router to move routing management to redux
+- Experiment Appollo + AWS App Sync
 
-##### AWS-Amplify
+
+### Tasks
+
+#### AWS-Amplify
 Your project has been successfully initialized and connected to the cloud!
 
 Some next steps:
@@ -42,7 +49,7 @@ Some next steps:
 Pro tip:
 Try "amplify add api" to create a backend API and then "amplify publish" to deploy everything
 
-##### Cognito
+#### Cognito
 
 ##### Reconnect to AWS Backend project
 1. install aws-cli - https://docs.aws.amazon.com/cli/latest/userguide/installing.html
