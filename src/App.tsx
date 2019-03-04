@@ -9,18 +9,18 @@ import BoardPage from './pages/board/containers/BoardPage';
 import HomePage from './pages/home/containers/HomePage';
 import MoviePage from './pages/movie/containers/MoviePage';
 import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
+import Footer from './shared/footer/Footer';
 
 
 const App = () => (
-  <div style={{ maxWidth: '1024px', margin: 'auto' }}>
+  <div className="app">
     <HeaderBarContainer></HeaderBarContainer>
-    <Box shape="roundedBottom">
       <div className="app-container">
         <Route exact path="/" render={() => <HomePage />} />
         <Route path="/movie/:movieId" component={MoviePage} />
         <Route path="/board" render={() => <BoardPage />} />
       </div>
-    </Box>
+    <Footer></Footer>
     <AuthDialogContainer />
   </div> 
 );
