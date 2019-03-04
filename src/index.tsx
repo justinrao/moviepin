@@ -1,16 +1,13 @@
-import Amplify from 'aws-amplify';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
-// import aws_exports from './aws-exports';
-import config from './config';
-import './index.css';
-import { Provider } from 'react-redux'
-import * as serviceWorker from './serviceWorker';
-import { store, persistor } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import App from './App';
 import aws from './aws';
+import './index.css';
+import * as serviceWorker from './serviceWorker';
+import { persistor, store } from './store/store';
 
 aws.configure();
 

@@ -22,7 +22,7 @@ const App = () => (
       </div>
     </Box>
     <AuthDialogContainer />
-  </div>
+  </div> 
 );
 
 export default App;

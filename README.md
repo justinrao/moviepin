@@ -1,19 +1,32 @@
 ### Movie Pin - "Pintrest" like app for movies.
 
 ### Live Website
-http://moviepin-20190106221238-hostingbucket.s3-website-us-east-1.amazonaws.com/
+[MoviePin AWS Link](https://master.d2yzcjaz3dlio3.amplifyapp.com/)
+
+### Features
+- Search great movie
+- See movie details
+- Create user account
+- Pin favoriate movie to a pin board
 
 #### Stack
-- Framework: react 16 / TypeScript
-- Routing react-router
+- Framework: React 16 / TypeScript
+- Routing: react-router
 - Component Library: Pintrest gestalt 
-- Testing: Jest / Enzyme
-- State Management: react-redux, redux-saga, reselect
-- Auth: AWS coginito
+- State Management: react-redux, reselect
+- Side Effects: redux-saga
+- Auth: AWS Coginito
+- API call: Axios / AWS Amplify
+
+#### APIs
+- The Movie DB API (3rd party)
+- User Movie API 
 
 #### Design
 - Dump / Smart Component Seperation
-- Redux
+- Shared State / Uni-directional data flow
+- Render Props
+- High Order Component
 
 #### Tasks
 
