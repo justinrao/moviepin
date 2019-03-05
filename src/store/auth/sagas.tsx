@@ -1,7 +1,7 @@
 import { Auth } from 'aws-amplify';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { User } from '../../models/user';
-import { closeAuthDialog } from '../ui/actions';
+import { closeAuthDialog } from '../ui/auth-dialog/actions';
 import { logInFailure, logInSuccess, logOutFailure, logOutSuccess, signUpFailure, signUpSuccess } from './actions';
 import { LogInAction, LogOutAction, LOG_IN, LOG_OUT, SignUpAction, SIGN_UP } from './types';
 

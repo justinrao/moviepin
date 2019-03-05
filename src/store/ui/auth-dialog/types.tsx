@@ -24,7 +24,7 @@ export interface CloseAuthDialogAction {
   type: typeof CLOSE_AUTH_DIALOG
 }
 
-export type UIActionTypes = 
+export type AuthDialogActionTypes = 
   OpenAuthLoginDialogAction |
   OpenAuthSignUpDialogAction |
   OpenAuthLogoutDialogAction |

@@ -1,5 +1,5 @@
 import { User } from "../../models/user";
-import { CLOSE_AUTH_DIALOG } from "../ui/types";
+import { CLOSE_AUTH_DIALOG } from "../ui/auth-dialog/types";
 import { AuthActionTypes, LOG_IN, LOG_IN_FAILURE, LOG_IN_SUCCESS, LOG_OUT, LOG_OUT_FAILURE, LOG_OUT_SUCCESS, SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS } from "./types";
 
 export interface AuthState {

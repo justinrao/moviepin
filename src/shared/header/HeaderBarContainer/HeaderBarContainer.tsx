@@ -7,7 +7,7 @@ import Menu from '../../../core/ui/Menu/Menu';
 import { connect } from 'react-redux';
 import { RootState } from '../../../store/reducers';
 import { Dispatch } from 'redux';
-import { openAuthLoginDialog, openAuthLogoutDialog } from '../../../store/ui/actions';
+import { openAuthLoginDialog, openAuthLogoutDialog } from '../../../store/ui/auth-dialog/actions';
 import { searchMovies, updateSearchText } from '../../../store/movie-search/actions';
 
 interface Props extends RouteComponentProps {

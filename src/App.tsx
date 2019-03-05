@@ -10,6 +10,7 @@ import HomePage from './pages/home/containers/HomePage';
 import MoviePage from './pages/movie/containers/MoviePage';
 import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
 import Footer from './shared/footer/Footer';
+import NotificationToast from './shared/notification/NotificationToast';
 
 
 const App = () => (
@@ -21,6 +22,7 @@ const App = () => (
         <Route path="/board" render={() => <BoardPage />} />
       </div>
     <Footer></Footer>
+    <NotificationToast></NotificationToast>
     <AuthDialogContainer />
   </div> 
 );

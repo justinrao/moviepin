@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import { User } from "../../models/user";
 import { ActionWithPayload } from "../types";
-import { CloseAuthDialogAction } from "../ui/types";
+import { CloseAuthDialogAction } from "../ui/auth-dialog/types";
 
 export const LOG_IN = 'LOG_IN';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';

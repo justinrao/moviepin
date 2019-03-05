@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import FormModal from '../../../core/ui/FormModal/FormModal';
 import { signUp } from '../../../store/auth/actions';
 import { RootState } from '../../../store/reducers';
-import { closeAuthDialog, openAuthLoginDialog } from '../../../store/ui/actions';
+import { closeAuthDialog, openAuthLoginDialog } from '../../../store/ui/auth-dialog/actions';
 import SignUpForm from '../components/SignUpForm';
 
 

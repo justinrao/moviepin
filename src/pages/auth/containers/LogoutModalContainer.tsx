@@ -5,7 +5,7 @@ import { Dispatch } from 'redux';
 import FormModal from '../../../core/ui/FormModal/FormModal';
 import { logOut } from '../../../store/auth/actions';
 import { RootState } from '../../../store/reducers';
-import { closeAuthDialog } from '../../../store/ui/actions';
+import { closeAuthDialog } from '../../../store/ui/auth-dialog/actions';
 import LogoutMessage from '../components/LogoutMessage';
 
 

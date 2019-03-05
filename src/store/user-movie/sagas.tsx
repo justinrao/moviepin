@@ -2,9 +2,10 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { UserMovie } from "../../models/userMovie";
 import MoviesApi from "../../services/movieApi";
 import { UserMovieApi } from "../../services/userMovieApi";
+import { LogInSuccessAction, LOG_IN_SUCCESS } from '../auth/types';
+import { showNotification } from '../ui/notification/actions';
+import { loadUserMovieFailure, loadUserMovies, loadUserMovieSuccess, postUserMovieFailure, postUserMovieSuccess } from './actions';
 import { LoadUserMoviesAction, LOAD_USER_MOVIES, PostUserMovieAction, POST_USER_MOVIE } from "./types";
-import { loadUserMovieSuccess, loadUserMovieFailure, postUserMovieFailure, postUserMovieSuccess, loadUserMovies } from './actions';
-import { LOG_IN_SUCCESS, LogInSuccessAction } from '../auth/types';
 
 export function* loadUserMoviesSaga(action: LoadUserMoviesAction) {
   try {
@@ -27,6 +28,10 @@ export function* loadUserMoviesSaga(action: LoadUserMoviesAction) {
 export function* postUserMovieSaga(action: PostUserMovieAction) {
   const {movieId, rating} = action.payload;
   try {
+
+    const notificationLine1 = rating === 5 ? 'Added to' : 'Removed from';
+    yield put(showNotification({line1: notificationLine1, line2: 'My Favorites'}))
+
     const userMovie: UserMovie = yield call(UserMovieApi.rateMovie, movieId, rating);
     const movie = yield call(MoviesApi.get, userMovie.movieId);
     userMovie.movie = movie;

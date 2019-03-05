@@ -12,7 +12,7 @@ const persistConfig: PersistConfig = {
   key: 'root',
   storage,
   throttle: 1000,
-  blacklist: ['movieSearch']
+  blacklist: ['movieSearch', 'ui']
 }
 
 // Redux-Persist for state persist and rehydration
