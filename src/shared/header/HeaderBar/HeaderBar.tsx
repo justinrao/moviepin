@@ -18,76 +18,78 @@ const HeaderBar = ({ user, onHomeClick, onLoginClick, onFavoriteClick, menu, chi
   const [profileMenuOpened, setProfileMenuOpened] = useState(false);
 
   return (
-    <Sticky top={0}>
-      <div className="header">
-        <Box color="white" shape="roundedTop" paddingX={4} paddingY={3} display="flex" direction="row" alignItems="center" >
-          <Box padding={3}>
-            <div onClick={onHomeClick} >
-              <Icon
-                color="red"
-                icon="globe"
-                size={20}
-                accessibilityLabel="moviepin">
-              </Icon>
-            </div>
-          </Box>
-          <Box>
-            <Heading size="xs">Movie Pin</Heading>
-          </Box>
-          <Box flex="grow" paddingX={3}>
-            {children}
-          </Box>
-          <Box paddingX={2} display="flex">
-            {user && user.userInfo &&
-              <Box alignSelf="center">
-
-                <Text>{user.userInfo.attributes.email}</Text>
-              </Box>
-            }
-            {user && user.userInfo &&
-              <Box>
-                <IconButton
-                  accessibilityLabel="My Favorite"
-                  bgColor="white"
-                  icon="heart"
-                  iconColor="red"
-                  onClick={onFavoriteClick}
-                />
-              </Box>
-            }
-            <Box>
-              {user
-                ? <div ref={profileRef}>
-                  <IconButton
-                    accessibilityLabel="Profile"
-                    icon="person"
-                    size="md"
-                    onClick={() => setProfileMenuOpened(true)} />
-                </div>
-                : <IconButton
-                  accessibilityLabel="Login"
-                  icon="people"
-                  size="md"
-                  onClick={onLoginClick} />}
-            </Box>
-            {profileMenuOpened &&
-              <div style={{ zIndex: 100 }} onClick={() => setProfileMenuOpened(false)}>
-                <Flyout
-                  anchor={profileRef.current}
-                  idealDirection="down"
-                  onDismiss={() => setProfileMenuOpened(false)}
-                  size="sm">
-                  {menu}
-                </Flyout></div>}
-          </Box>
-
+    <div className="header">
+      <Box color="white" shape="roundedTop" paddingX={4} paddingY={3} display="flex" direction="row" alignItems="center" >
+        <HeaderBarHome onClick={onHomeClick}></HeaderBarHome>
+        <Box flex="grow" paddingX={3}>
+          {children}
         </Box>
-      </div>
-    </Sticky>
+          <Box paddingX={2} display="flex">
+          {user && user.userInfo &&
+            <Box alignSelf="center">
 
+              <Text>{user.userInfo.attributes.email}</Text>
+            </Box>
+          }
+          {user && user.userInfo &&
+            <Box>
+              <IconButton
+                accessibilityLabel="My Favorite"
+                bgColor="white"
+                icon="heart"
+                iconColor="red"
+                onClick={onFavoriteClick}
+              />
+            </Box>
+          }
+          <Box>
+            {user
+              ? <div ref={profileRef}>
+                <IconButton
+                  accessibilityLabel="Profile"
+                  icon="person"
+                  size="md"
+                  onClick={() => setProfileMenuOpened(true)} />
+              </div>
+              : <IconButton
+                accessibilityLabel="Login"
+                icon="people"
+                size="md"
+                onClick={onLoginClick} />}
+          </Box>
+          {profileMenuOpened &&
+            <div style={{ zIndex: 100 }} onClick={() => setProfileMenuOpened(false)}>
+              <Flyout
+                anchor={profileRef.current}
+                idealDirection="down"
+                onDismiss={() => setProfileMenuOpened(false)}
+                size="sm">
+                {menu}
+              </Flyout></div>}
+        </Box>
 
+      </Box>
+    </div>
   )
 };
 
+
+const HeaderBarHome = ({ onClick }: { onClick?: () => void }) => (
+  <div onClick={onClick} className="header-home">
+    <Box display="flex" direction="row" alignItems="center" padding={2}>
+      <Box marginRight={2} >
+        <Icon
+          color="red"
+          icon="globe"
+          size={20}
+          accessibilityLabel="moviepin">
+        </Icon>
+      </Box>
+      <Box>
+        <Heading size="xs">Movie Pin</Heading>
+      </Box>
+    </Box>
+
+  </div>)
 
 export default HeaderBar;
