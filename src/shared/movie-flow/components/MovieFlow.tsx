@@ -51,8 +51,8 @@ const MovieFlow = ({
         loadItems={() => loadMovies && loadMovies()}
         scrollContainer={() => (window as unknown as HTMLElement)}
         minCols={1}
-        flexible={true}
         gutterWidth={3}
+        virtualize={true}
       />
       {movies.length === 0 && emptyMessage && <SingleMessage>{emptyMessage}</SingleMessage>}
     </Box>

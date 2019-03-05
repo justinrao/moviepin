@@ -11,7 +11,8 @@ import rootSaga from './sagas';
 const persistConfig: PersistConfig = {
   key: 'root',
   storage,
-  throttle: 1000
+  throttle: 1000,
+  blacklist: ['movieSearch']
 }
 
 // Redux-Persist for state persist and rehydration

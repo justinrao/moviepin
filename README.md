@@ -15,6 +15,7 @@
 - Component Library: Pintrest gestalt 
 - State Management: react-redux, reselect
 - Side Effects: redux-saga
+- State Rehydration: redux-persist
 - Auth: AWS Coginito
 - API call: Axios / AWS Amplify
 

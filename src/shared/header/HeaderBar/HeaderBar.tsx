@@ -26,13 +26,12 @@ const HeaderBar = ({ user, onHomeClick, onLoginClick, onFavoriteClick, menu, chi
         </Box>
           <Box paddingX={2} display="flex">
           {user && user.userInfo &&
-            <Box alignSelf="center">
-
+            <Box alignSelf="center" display="none" mdDisplay="block" lgDisplay="block" >
               <Text>{user.userInfo.attributes.email}</Text>
             </Box>
           }
           {user && user.userInfo &&
-            <Box>
+            <Box >
               <IconButton
                 accessibilityLabel="My Favorite"
                 bgColor="white"
@@ -77,7 +76,7 @@ const HeaderBar = ({ user, onHomeClick, onLoginClick, onFavoriteClick, menu, chi
 const HeaderBarHome = ({ onClick }: { onClick?: () => void }) => (
   <div onClick={onClick} className="header-home">
     <Box display="flex" direction="row" alignItems="center" padding={2}>
-      <Box marginRight={2} >
+      <Box marginRight={4} >
         <Icon
           color="red"
           icon="globe"
@@ -85,7 +84,7 @@ const HeaderBarHome = ({ onClick }: { onClick?: () => void }) => (
           accessibilityLabel="moviepin">
         </Icon>
       </Box>
-      <Box>
+      <Box display="none" smDisplay="block">
         <Heading size="xs">Movie Pin</Heading>
       </Box>
     </Box>
