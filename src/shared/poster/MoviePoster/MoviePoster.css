@@ -1,3 +1,6 @@
 .poster:hover {
   cursor: pointer;
 }
+.poster>div {
+  text-align: center
+}

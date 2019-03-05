@@ -11,16 +11,18 @@ interface Props {
 
 const MovieDetails = ({ movie }: Props) => (
   <Box color="white" shape="roundedBottom" paddingX={2} display="flex" direction="column" alignItems="center" minHeight="650px">
-    <Box display="flex" direction='row' width="100%">
-      <Box dangerouslySetInlineStyle={{ __style: { flex: 1 } }}>
+    <Box padding={0} marginBottom={3} mdDisplay="none">
+          <Heading size="md"  color="darkGray">{movie.title}</Heading>
+        </Box>
+    <Box display="flex" direction='row' width="100%" wrap={true} alignItems="start">
+      <Box flex="none" column={12} mdColumn={5} lgColumn={4} alignSelf="center">
         <MoviePoster
           movie={movie}
-          minHeight="450px"
-          maxHeight="450px"
+          maxHeight="400px"
         ></MoviePoster>
       </Box>
-      <Box paddingX={5} dangerouslySetInlineStyle={{ __style: { flex: 2 } }}>
-        <Box padding={2}>
+      <Box paddingX={5} flex="none" column={12} mdColumn={7} lgColumn={8} >
+        <Box padding={0} marginBottom={3} display="none" mdDisplay="block">
           <Heading size="sm" color="darkGray">{movie.title}</Heading>
         </Box>
         <MovieDetailsItem icon='globe' label='Language'>
@@ -55,7 +57,7 @@ const MovieDetails = ({ movie }: Props) => (
         </Box>
       </Box>
     </Box>
-    <Box paddingX={2} paddingY={3}>
+    <Box paddingX={2} paddingY={3} >
       <Text size="lg" color='gray'>{movie.overview}</Text>
     </Box>
   </Box>

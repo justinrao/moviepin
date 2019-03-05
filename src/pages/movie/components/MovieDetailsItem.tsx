@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default ({ icon, label, children }: Props) => (
-    <Box display='flex' direction='row' alignItems='center'>
+    <Box display='flex' direction='row' alignItems='center' paddingY={1}>
         <Box flex='none' paddingX={2} >
             <Icon icon={icon} accessibilityLabel={label} color='red'></Icon>
         </Box>
