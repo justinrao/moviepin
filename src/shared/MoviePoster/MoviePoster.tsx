@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from 'gestalt';
-import { Movie } from '../../../models/movie';
+import { Movie } from '../../models/movie';
 import './MoviePoster.css';
 
 const POSTER_URL_PREFIX = 'http://image.tmdb.org/t/p/w500/';

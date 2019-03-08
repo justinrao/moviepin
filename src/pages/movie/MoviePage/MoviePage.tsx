@@ -2,8 +2,8 @@ import { Box } from 'gestalt';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { RouteComponentProps } from "react-router";
-import MoviesApi from '../../../services/movieApi';
-import MovieDetails from '../components/MovieDetails';
+import MoviesApi from '../../../apis/movieApi';
+import MovieDetails from '../MovieDetails/MovieDetails';
 
 interface RouteParams {
   movieId: string

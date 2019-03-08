@@ -1,16 +1,15 @@
 
-import { Box } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
-import AuthDialogContainer from './pages/auth/containers/AuthDialogContainer';
-import BoardPage from './pages/board/containers/BoardPage';
-import HomePage from './pages/home/containers/HomePage';
-import MoviePage from './pages/movie/containers/MoviePage';
-import HeaderBarContainer from './shared/header/HeaderBarContainer/HeaderBarContainer';
-import Footer from './shared/footer/Footer';
-import NotificationToast from './shared/notification/NotificationToast';
+import AuthDialogContainer from './pages/auth/AuthDialog/AuthDialogContainer';
+import BoardPage from './pages/board/BoardPage/BoardPage';
+import HomePage from './pages/home/HomePage/HomePage';
+import MoviePage from './pages/movie/MoviePage/MoviePage';
+import Footer from './shared/Footer/Footer';
+import HeaderBarContainer from './shared/HeaderBar/HeaderBarContainer';
+import NotificationToast from './shared/NotificationToast/NotificationToast';
 
 
 const App = () => (

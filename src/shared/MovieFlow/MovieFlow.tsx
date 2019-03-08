@@ -3,15 +3,15 @@ import React from 'react';
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
 import { Dispatch } from "redux";
-import SingleMessage from "../../../core/layout/SingleMessage/SingleMessage";
-import { Movie } from '../../../models/movie';
-import { RootState } from "../../../store/reducers";
-import { postUserMovie } from "../../../store/user-movie/actions";
-import { selectFavoriteMovieIds } from "../../../store/user-movie/selectors";
-import MovieFlowPoster from '../components/MovieFlowPoster';
-import { selectUser } from "../../../store/auth/selectors";
-import { User } from "../../../models/user";
-import { openAuthLoginDialog } from "../../../store/ui/auth-dialog/actions";
+import SingleMessage from "../../core/layout/SingleMessage/SingleMessage";
+import { Movie } from '../../models/movie';
+import { RootState } from "../../store/reducers";
+import { postUserMovie } from "../../store/user-movie/actions";
+import { selectFavoriteMovieIds } from "../../store/user-movie/selectors";
+import MovieFlowPoster from './MovieFlowPoster';
+import { selectUser } from "../../store/auth/selectors";
+import { User } from "../../models/user";
+import { openAuthLoginDialog } from "../../store/ui/auth-dialog/actions";
 
 interface Props extends RouteComponentProps {
   movies: Movie[];

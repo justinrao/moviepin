@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { UserMovie } from "../../models/userMovie";
-import MoviesApi from "../../services/movieApi";
-import { UserMovieApi } from "../../services/userMovieApi";
+import MoviesApi from "../../apis/movieApi";
+import UserMovieApi from "../../apis/userMovieApi";
 import { LogInSuccessAction, LOG_IN_SUCCESS } from '../auth/types';
 import { showNotification } from '../ui/notification/actions';
 import { loadUserMovieFailure, loadUserMovies, loadUserMovieSuccess, postUserMovieFailure, postUserMovieSuccess } from './actions';

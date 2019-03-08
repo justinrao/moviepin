@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import withLoading from '../../../core/hoc/withLoading/withLoading';
 import { Movie } from '../../../models/movie';
 import { UserMovie } from '../../../models/userMovie';
-import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
+import MovieFlow from '../../../shared/MovieFlow/MovieFlow';
 import { RootState } from '../../../store/reducers';
 import { selectFavoriteMovies } from '../../../store/user-movie/selectors';
 

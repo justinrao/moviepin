@@ -1,6 +1,6 @@
 import { Box, Flyout, Heading, Icon, IconButton, Text, Sticky } from "gestalt";
 import React, { ReactChild, useRef, useState } from 'react';
-import { User } from "../../../models/user";
+import { User } from "../../models/user";
 import "./HeaderBar.css";
 
 interface Props {
@@ -88,7 +88,6 @@ const HeaderBarHome = ({ onClick }: { onClick?: () => void }) => (
         <Heading size="xs">Movie Pin</Heading>
       </Box>
     </Box>
-
   </div>)
 
 export default HeaderBar;

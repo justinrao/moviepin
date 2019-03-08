@@ -1,7 +1,6 @@
+import { Action } from "redux";
 import { Movie } from "../../models/movie";
 import { ActionWithPayload } from "../types";
-import { MovieSearchParams } from "../../services/movieApi";
-import { Action } from "redux";
 
 export const UPDATE_SEARCH_TEXT = 'UPDATE_SEARCH_TEXT';
 

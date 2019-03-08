@@ -1,5 +1,5 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-import MoviesApi from "../../services/movieApi";
+import MoviesApi from "../../apis/movieApi";
 import { searchMovies as searchMovieAction, searchMoviesFailure, searchMoviesSuccess } from './actions';
 import { SearchMoviesAction, SEARCH_MOVIES, UPDATE_SEARCH_TEXT, UpdateSearchTextAction } from "./types";
 import { MovieSearchState } from './reducer';

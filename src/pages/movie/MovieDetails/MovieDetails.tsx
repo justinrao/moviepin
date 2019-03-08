@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading, Box, Text, Icon, Button, Link } from 'gestalt';
 import MovieDetailsItem from './MovieDetailsItem';
-import MoviePoster from '../../../shared/poster/MoviePoster/MoviePoster';
+import MoviePoster from '../../../shared/MoviePoster/MoviePoster';
 import { Movie } from '../../../models/movie';
 
 

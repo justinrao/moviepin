@@ -1,14 +1,14 @@
 import React from 'react';
 import { RouteComponentProps, withRouter, Route } from "react-router";
-import HeaderBar from "../HeaderBar/HeaderBar";
-import { User } from "../../../models/user";
-import { SearchBar } from "../../search/SearchBar";
-import Menu from '../../../core/ui/Menu/Menu';
+import HeaderBar from "./HeaderBar";
+import { User } from "../../models/user";
+import { SearchBar } from "../SearchBar/SearchBar";
+import Menu from '../../core/ui/Menu/Menu';
 import { connect } from 'react-redux';
-import { RootState } from '../../../store/reducers';
+import { RootState } from '../../store/reducers';
 import { Dispatch } from 'redux';
-import { openAuthLoginDialog, openAuthLogoutDialog } from '../../../store/ui/auth-dialog/actions';
-import { searchMovies, updateSearchText } from '../../../store/movie-search/actions';
+import { openAuthLoginDialog, openAuthLogoutDialog } from '../../store/ui/auth-dialog/actions';
+import { searchMovies, updateSearchText } from '../../store/movie-search/actions';
 
 interface Props extends RouteComponentProps {
   user?: User;

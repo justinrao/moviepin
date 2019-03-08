@@ -2,9 +2,9 @@ import React, { ComponentType } from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../../store/reducers';
 import { AuthDialogType } from '../../../store/ui/auth-dialog/reducer';
-import LoginModalContainer from './LoginModalContainer';
-import LogoutModalContainer from './LogoutModalContainer';
-import SignUpModalContainer from './SignUpModalContainer';
+import LoginModalContainer from '../LoginModal/LoginModalContainer';
+import LogoutModalContainer from '../LogoutModal/LogoutModalContainer';
+import SignUpModalContainer from '../SignUpModal/SignUpModalContainer';
 
 
 interface Props {

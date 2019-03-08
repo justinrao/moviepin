@@ -3,7 +3,7 @@ import { UserMovie } from '../models/userMovie';
 
 const ENDPOINT_NAME = 'userMovie';
 
-export class UserMovieApi {
+export default class UserMovieApi {
   static async rateMovie(movieId: number, rating: number) {
     const body = {
       movieId,

@@ -1,6 +1,6 @@
 import { Movie } from "../../models/movie";
 import { MovieSearchActions, SEARCH_MOVIES, SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES_FAILURE, UPDATE_SEARCH_TEXT } from "./types";
-import { FIRST_PAGE_NUMBER } from "../../services/movieApi";
+import { FIRST_PAGE_NUMBER } from "../../apis/movieApi";
 
 export interface MovieSearchState {
   search: string;

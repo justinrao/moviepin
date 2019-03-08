@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import MovieFlow from '../../../shared/movie-flow/components/MovieFlow';
-import { Movie } from '../../../models/movie';
-import MoviesApi from '../../../services/movieApi';
-import { RootState } from '../../../store/reducers';
-import { Dispatch } from 'redux';
-import { searchMovies } from '../../../store/movie-search/actions';
+import React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { Movie } from '../../../models/movie';
+import MovieFlow from '../../../shared/MovieFlow/MovieFlow';
+import { searchMovies } from '../../../store/movie-search/actions';
 import { selectMoviesWithPoster } from '../../../store/movie-search/selectors';
+import { RootState } from '../../../store/reducers';
 
 interface Props {
   movies: Movie[],
